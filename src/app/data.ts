@@ -167,7 +167,7 @@ export const PERSONAL = {
     'IT', 'JP', 'LV', 'LS', 'LI', 'LU', 'MO', 'MY', 'MX', 'MD', 'MC', 'ME', 'MA',
     'NA', 'NL', 'NZ', 'MK', 'PE', 'PH', 'PL', 'PT', 'QA', 'RO', 'SM', 'RS', 'SG',
     'SK', 'SI', 'ZA', 'KR', 'ES', 'LK', 'SE', 'CH', 'TW', 'TH', 'TR', 'UA', 'GB',
-    'US', 'VA', 'VN', 'ZM', 'ZW',
+    'US', 'VA', 'VN', 'XK', 'ZM', 'ZW',
   ]
 };
 

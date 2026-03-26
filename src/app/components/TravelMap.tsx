@@ -1,10 +1,22 @@
 'use client';
 
-import { useState } from 'react';
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
+import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
+import { geoNaturalEarth1, geoPath } from 'd3-geo';
+import { feature } from 'topojson-client';
+import type { Topology, GeometryCollection } from 'topojson-specification';
+import type { Feature, Geometry } from 'geojson';
 
 const GEO_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json';
+const VISITED_COLOR = '#3b82f6';
+const BORDER_COLOR = '#ffffff';
+const WIDTH = 800;
+const HEIGHT = 400;
+
+// Countries whose territory is merged into another shape in world-atlas (key = host ISO, values = merged codes)
+const MERGED_INTO: Record<string, string[]> = {
+  'RS': ['XK'], // Kosovo has no separate shape; its territory is part of Serbia
+};
 
 const COUNTRY_ISO_MAP: Record<string, string> = {
   "004": "AF", "008": "AL", "012": "DZ", "016": "AS", "020": "AD",
@@ -45,9 +57,6 @@ const COUNTRY_ISO_MAP: Record<string, string> = {
   "336": "VA", "748": "SZ", "831": "GG", "833": "IM",
 };
 
-const VISITED_COLOR = '#3b82f6';
-const BORDER_COLOR = '#ffffff';
-
 interface TooltipState {
   name: string;
   x: number;
@@ -59,13 +68,60 @@ interface TravelMapProps {
   visitedCountryCodes: string[];
 }
 
+type GeoFeature = Feature<Geometry, { name: string }>;
+
 export const TravelMap = ({ visitedCountryCodes }: TravelMapProps) => {
+  const [geos, setGeos] = useState<GeoFeature[]>([]);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
-  const [position, setPosition] = useState({ coordinates: [0, 20] as [number, number], zoom: 1 });
+  const [pan, setPan] = useState({ x: 0, y: 0, k: 1 });
+  const svgRef = useRef<SVGSVGElement>(null);
+  const dragRef = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null);
   const { resolvedTheme } = useTheme();
 
   const unvisitedColor = resolvedTheme === 'dark' ? '#334155' : '#e2e8f0';
   const visitedSet = new Set(visitedCountryCodes);
+
+  useEffect(() => {
+    fetch(GEO_URL)
+      .then(r => r.json())
+      .then((topo: Topology) => {
+        const countries = feature(topo, topo.objects.countries as GeometryCollection);
+        setGeos(countries.features as GeoFeature[]);
+      });
+  }, []);
+
+  const projection = geoNaturalEarth1()
+    .scale((WIDTH / (2 * Math.PI)) * 0.85)
+    .translate([WIDTH / 2, HEIGHT / 2]);
+
+  const pathGen = geoPath(projection);
+
+  const handleWheel = (e: React.WheelEvent) => {
+    e.preventDefault();
+    const factor = e.deltaY < 0 ? 1.2 : 1 / 1.2;
+    const rect = svgRef.current!.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) * (WIDTH / rect.width);
+    const my = (e.clientY - rect.top) * (HEIGHT / rect.height);
+    setPan(prev => {
+      const newK = Math.max(1, Math.min(8, prev.k * factor));
+      const ratio = newK / prev.k;
+      return { x: mx - ratio * (mx - prev.x), y: my - ratio * (my - prev.y), k: newK };
+    });
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    dragRef.current = { x: e.clientX, y: e.clientY, tx: pan.x, ty: pan.y };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!dragRef.current) return;
+    const rect = svgRef.current!.getBoundingClientRect();
+    const dx = (e.clientX - dragRef.current.x) * (WIDTH / rect.width);
+    const dy = (e.clientY - dragRef.current.y) * (HEIGHT / rect.height);
+    setPan(prev => ({ ...prev, x: dragRef.current!.tx + dx, y: dragRef.current!.ty + dy }));
+  };
+
+  const handleMouseUp = () => { dragRef.current = null; };
 
   return (
     <div className="w-full rounded-[2rem] overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
@@ -77,49 +133,45 @@ export const TravelMap = ({ visitedCountryCodes }: TravelMapProps) => {
           </span>
         </div>
         <span className="text-sm text-muted">
-        ({Math.round((visitedCountryCodes.length / 195) * 100)}% of the world)
+          ({Math.round((visitedCountryCodes.length / 195) * 100)}% of the world)
         </span>
       </div>
 
       <div className="w-full aspect-[2/1]">
-        <ComposableMap
-          projection="geoNaturalEarth1"
-          style={{ width: '100%', height: '100%' }}
+        <svg
+          ref={svgRef}
+          viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+          style={{ width: '100%', height: '100%', cursor: dragRef.current ? 'grabbing' : 'grab' }}
+          onWheel={handleWheel}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
         >
-          <ZoomableGroup
-            zoom={position.zoom}
-            center={position.coordinates}
-            onMoveEnd={({ coordinates, zoom }) => setPosition({ coordinates, zoom })}
-          >
-            <Geographies geography={GEO_URL}>
-              {({ geographies }) =>
-                geographies.map((geo) => {
-                  const iso = COUNTRY_ISO_MAP[geo.id as string];
-                  const isVisited = iso ? visitedSet.has(iso) : false;
-                  const countryName = geo.properties.name as string;
-
-                  return (
-                    <Geography
-                      key={geo.rsmKey}
-                      geography={geo}
-                      fill={isVisited ? VISITED_COLOR : unvisitedColor}
-                      stroke={BORDER_COLOR}
-                      strokeWidth={0.5}
-                      style={{
-                        default: { outline: 'none' },
-                        hover: { outline: 'none', opacity: 0.85, cursor: 'default' },
-                        pressed: { outline: 'none' },
-                      }}
-                      onMouseEnter={(evt) => setTooltip({ name: countryName, x: evt.clientX, y: evt.clientY, visited: isVisited })}
-                      onMouseMove={(evt) => setTooltip(prev => prev ? { ...prev, x: evt.clientX, y: evt.clientY } : null)}
-                      onMouseLeave={() => setTooltip(null)}
-                    />
-                  );
-                })
-              }
-            </Geographies>
-          </ZoomableGroup>
-        </ComposableMap>
+          <g transform={`translate(${pan.x},${pan.y}) scale(${pan.k})`}>
+            {geos.map((geo, i) => {
+              const d = pathGen(geo);
+              if (!d) return null;
+              const id = String(geo.id).padStart(3, '0');
+              const iso = COUNTRY_ISO_MAP[id];
+              const merged = iso ? (MERGED_INTO[iso] ?? []) : [];
+              const isVisited = iso ? (visitedSet.has(iso) || merged.some(c => visitedSet.has(c))) : false;
+              const name = geo.properties?.name ?? '';
+              return (
+                <path
+                  key={i}
+                  d={d}
+                  fill={isVisited ? VISITED_COLOR : unvisitedColor}
+                  stroke={BORDER_COLOR}
+                  strokeWidth={0.5 / pan.k}
+                  onMouseEnter={e => setTooltip({ name, x: e.clientX, y: e.clientY, visited: isVisited })}
+                  onMouseMove={e => setTooltip(prev => prev ? { ...prev, x: e.clientX, y: e.clientY } : null)}
+                  onMouseLeave={() => setTooltip(null)}
+                />
+              );
+            })}
+          </g>
+        </svg>
       </div>
 
       <div className="px-5 pb-3 pt-1">
