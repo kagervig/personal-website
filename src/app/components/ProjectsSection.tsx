@@ -9,7 +9,7 @@ interface ProjectsSectionProps {
 }
 
 export const ProjectsSection = ({ expandedItems, onToggle }: ProjectsSectionProps) => (
-  <section id="projects" className="section-padding">
+  <section id="projects" className="section-padding !pt-8">
     <SectionHeader title="Featured Projects" icon={Code} />
     <div className="grid grid-cols-1 gap-8">
       {PROJECTS.map(project => (

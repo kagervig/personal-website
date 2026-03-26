@@ -10,6 +10,37 @@ export const LinkedinIcon = ({ size = 24 }: { size?: number }) => (
   </svg>
 );
 
+export const AdobeStockIcon = ({ size = 32 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    {/* Adobe "A" logo — two overlapping triangular shapes */}
+    <path d="M13.5 2h-3L2 22h5.5l1.8-4.5h5.4L16.5 22H22L13.5 2zm-3.2 12L12 9l1.7 5h-3.4z" fill="#FF0000" />
+  </svg>
+);
+
+export const ShutterstockIcon = ({ size = 32 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="4" fill="#EE2222" />
+    <path d="M16.2 7.8C15.3 6.7 13.9 6 12.3 6 9.4 6 7 8.4 7 11.3c0 1.7.8 3.2 2 4.2l1.4-1.4c-.8-.7-1.4-1.7-1.4-2.8 0-2 1.6-3.6 3.6-3.6.9 0 1.7.3 2.3.9L16.2 7.8zM7.8 16.2c.9 1.1 2.3 1.8 3.9 1.8 2.9 0 5.3-2.4 5.3-5.3 0-1.7-.8-3.2-2-4.2l-1.4 1.4c.8.7 1.4 1.7 1.4 2.8 0 2-1.6 3.6-3.6 3.6-.9 0-1.7-.3-2.3-.9L7.8 16.2z" fill="white" />
+  </svg>
+);
+
+export const GettyIcon = ({ size = 32 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="4" fill="#1A1A1A" />
+    <text x="12" y="17" textAnchor="middle" fill="white" fontSize="13" fontWeight="700" fontFamily="Georgia, serif">G</text>
+  </svg>
+);
+
+export const EnvatoIcon = ({ size = 32 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="4" fill="#81B441" />
+    {/* Envato stylised leaf/arrow mark */}
+    <path d="M12 4L19 8.5V15.5L12 20L5 15.5V8.5L12 4Z" fill="white" opacity="0.2" />
+    <path d="M8 16l4-8 4 8H8z" fill="white" />
+    <path d="M9.5 13h5" stroke="#81B441" strokeWidth="1.5" />
+  </svg>
+);
+
 export const YoutubeIcon = ({ size = 24 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
     <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />

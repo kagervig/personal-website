@@ -4,25 +4,25 @@ export const PROJECTS = [
     title: 'CityHopper',
     year: '2026',
     description: 'A full-stack multi-city flight search engine built from scratch.',
-    tech: ['Java', 'REST', 'React', 'Next.js', 'PostgreSQL', 'Render', 'Vercel'],
+    tech: ['Java', 'REST', 'React', 'Next.js', 'PostgreSQL', 'Render', 'Vercel', "Dijkstra's Algorithm"],
     details: [
       'Designed and built a full-stack multi-city flight search engine from scratch.',
       "Solves a real-world variant of the Travelling Salesman Problem: given a home city and up to 5 destinations, builds a weighted airport graph and applies Dijkstra's algorithm to find the cheapest or fastest itinerary.",
       'Deployed independently on Render (backend) and Vercel (frontend).'
     ]
   },
-  {
-    id: 'project-two',
-    title: 'Project Two',
-    year: '2026',
-    description: 'Advanced flight search engine with complex graph algorithms.',
-    tech: ['Java', 'React', 'PostgreSQL', "Dijkstra's Algorithm"],
-    details: [
-      'Designed and built a full-stack multi-city flight search engine from scratch: Java REST backend, React/Next.js frontend, PostgreSQL database.',
-      "Solves a real-world variant of the Travelling Salesman Problem using Dijkstra's algorithm to find optimal itineraries.",
-      'Focuses on high-performance data processing and intuitive UI for complex travel planning.'
-    ]
-  }
+  // {
+  //   id: 'project-two',
+  //   title: 'Project Two',
+  //   year: '2026',
+  //   description: 'Advanced flight search engine with complex graph algorithms.',
+  //   tech: ['Java', 'React', 'PostgreSQL'],
+  //   details: [
+  //     'Designed and built a full-stack multi-city flight search engine from scratch: Java REST backend, React/Next.js frontend, PostgreSQL database.',
+  //     "Solves a real-world variant of the Travelling Salesman Problem using Dijkstra's algorithm to find optimal itineraries.",
+  //     'Focuses on high-performance data processing and intuitive UI for complex travel planning.'
+  //   ]
+  // }
 ];
 
 export const EXPERIENCE = [
@@ -31,14 +31,17 @@ export const EXPERIENCE = [
     company: 'Keysight Technologies',
     role: 'Technical Product Manager',
     period: '2022 – 2025',
-    location: 'Stuttgart, Germany | Toronto, Canada',
-    description: 'Re-architected product information management systems and automated data workflows.',
+    location: 'Toronto, Canada',
+    description: 'Led the re-architecture of Keysight\'s product information management system — the data backbone behind a 4,000+ SKU catalogue serving aerospace, defence, and electronics customers globally.',
     details: [
-      'Re-architected a product information management system across 4,000+ SKUs, directly contributing to $200M in new annual revenue and a 10% improvement in lead generation.',
-      'Audited and remediated 90k+ product records using multi-table SQL joins and aggregations to identify data quality issues.',
-      'Python scripts automated cleaning and normalisation workflows across multiple business lines.',
-      'Drove roadmap alignment across senior leadership, IT, 100+ product owners and engineers company-wide.',
-      'Trained 100+ users on system workflows and data ownership, reducing entry errors by 80%.'
+      'Keysight\'s product data had accumulated five years of ungoverned, inconsistent records across every business line. No single person understood the full scope of the problem. I was brought in to fix it.',
+      'Started by conducting a full audit — writing multi-table SQL queries across the PIM database to surface data quality issues at scale, then working with domain experts in each business unit to understand what correct data actually looked like.',
+      'Defined a new data model and taxonomy, restructuring how 4,000+ products were categorised on the web. This was a ground-up rethink of how product information was structured within the existing system to support a significant investment in eCommerce. Without good data, the web development would be worthless.',
+      'I designed the governance model alongside the data model: clear ownership rules, defined data entry standards, and accountability structures so the system wouldn\'t degrade again after launch.',
+      'Wrote Python scripts to automate data cleaning and normalisation workflows — processing tens of thousands of records that couldn\'t be fixed manually at any reasonable speed.',
+      'Coordinated across virtually every product line at Keysight, working with senior leadership, IT, and 100+ product owners and engineers to align on project vision, priorities, and rollout.',
+      'Designed and delivered training for 100+ users across the organisation, addressing gaps in both system knowledge and data ownership — reducing entry errors by an estimated 80%.',
+      'The re-architecture directly contributed to $200M in new annual revenue from eCommerce and a ~10% improvement in lead generation.'
     ]
   },
   {
@@ -47,24 +50,28 @@ export const EXPERIENCE = [
     role: 'Marketing Manager, Brand',
     period: '2020 – 2022',
     location: 'Toronto, Canada',
-    description: 'Consolidated brand designs and managed high-volume email marketing.',
+    description: 'Led Keysight\'s corporate rebranding initiative end-to-end — from vendor selection through to global rollout — and rebuilt the organisation\'s entire email infrastructure from scratch.',
     details: [
-      'Built responsive email templates, consolidated 200+ designs into a cohesive brand.',
-      'Managed 15M+ annual sends, ensuring high deliverability and engagement.',
-      'Collaborated with cross-functional teams to align brand messaging across digital channels.'
+      'Keysight had over 200 email templates in circulation across the global marketing organisation, each built independently over years with different colour palettes, layouts, and design languages. There was no cohesive brand expression.',
+      'I was tasked with building a new responsive HTML/CSS email template system for use in Oracle\'s Eloqua platform, consolidating 200+ inconsistent designs into a single cohesive system. I built and delivered training to the ~300 users across the company. The templates are used globally with 15M+ sends per year.',
+      'Ran the RFP process for the corporate rebrand: researched, vetted, and engaged external design agencies, then worked closely with the CMO to select the right partner and led the project end-to-end from brief to launch.',
+      'Collaborated with the agency to produce comprehensive brand guidelines covering visual identity, tone of voice, and design standards — then owned the rollout across global marketing teams.',
+      'The redesigned corporate website launched as part of the rebrand and was recognised by the board. Managed the transition from old to new brand across all digital and print touchpoints.',
+      'Authored training materials and ran sessions for marketers and product managers across a global organisation to embed the new brand standards.'
     ]
   },
   {
     id: 'keysight-apm',
     company: 'Keysight Technologies',
-    role: 'Associate Product Manager',
+    role: 'Associate Product Manager, eCommerce',
     period: '2016 – 2020',
-    location: 'Toronto, Canada',
-    description: 'Prioritized eCommerce roadmap and drove revenue growth.',
+    location: 'Stuttgart, Germany',
+    description: 'Defined the eCommerce product roadmap alongside engineering teams and led Keysight\'s expansion into the Chinese market.',
     details: [
-      'Wrote engineering requirements to prioritise the eCommerce roadmap, driving $14.5M revenue increase.',
-      'Analyzed user behavior data to identify friction points in the checkout process.',
-      'Worked closely with engineering teams to deliver features on schedule.'
+      'Worked directly with software engineers day-to-day: writing requirements, participating in sprint planning, and helping prioritise the eCommerce roadmap based on commercial impact. The features we shipped drove $14.5M in incremental revenue YoY.',
+      'Led a 6-month end-to-end localisation project to launch Keysight\'s eCommerce presence in China. Managed the vendor relationship from selection through to delivery, handled technical content translation, oversaw QA, and was on the ground in Shanghai for the final build and launch phases.',
+      'Attended trade shows working at the Keysight booth, meeting with customers in both English and German.',
+      'Built deep knowledge of Keysight\'s complex B2B product portfolio across test and measurement, aerospace, defence, and electronics — context that proved foundational for the PIM work that followed.'
     ]
   },
   {
@@ -73,18 +80,21 @@ export const EXPERIENCE = [
     role: 'Director & Co-Founder',
     period: '2008 – 2014',
     location: 'London, UK',
-    description: 'Founded and scaled a computer hardware and services business.',
+    description: 'Founded and scaled a computer hardware and services business to $2M annual revenue — including an ADISA-certified data destruction operation serving the NHS and universities.',
     details: [
-      'Founded and scaled a computer hardware and services business to $2M in annual revenue with 7 staff.',
-      'Authored ADISA-certified data destruction processes, meeting the liability transfer standards required to win contracts with the NHS and education sector.',
-      'Processed over 15,000 devices per annum.'
+      'Co-founded MacColl Media, growing it to $2M in annual revenue with 7 full time staff. The business covered Mac repair, used IT and AV equipment sales, and certified data destruction.',
+      'Launched three eCommerce websites to support the business: one for Mac repair services, one for used IT equipment, and one for purchasing consumer electronics',
+      'The data destruction side of the business required meeting exacting standards. To win contracts with the NHS and universities, we needed ADISA certification — a recognised industry standard specifically covering the liability transfer of data-bearing devices - as well as ISO9001 certification',
+      'Authored the ADISA-certified processes from the ground up. This meant understanding the standard deeply enough to design compliant workflows, document them to audit level, and train staff to execute them consistently.',
+      'At peak we were processing over 15,000 devices per year. Clients included NHS trusts and universities — organisations where a data breach would have been a serious regulatory and reputational event. The certification gave them the assurance they needed to transfer liability to us.',
+      'Running a 7-person business across two locations in my early twenties taught me more about operations, customer accountability, and building systems that don\'t break under pressure than anything else I\'ve done.'
     ]
   }
 ];
 
 export const SKILLS = {
   languages: ['Java', 'SQL', 'Python', 'JavaScript', 'React', 'Git'],
-  technologies: ['PostgreSQL', 'MySQL', 'Render', 'Supabase', 'Vercel', 'Next.js']
+  technologies: ['PostgreSQL', 'MySQL', 'Render', 'Vercel', 'Next.js']
 };
 
 export const EDUCATION = [
@@ -113,25 +123,52 @@ export const EDUCATION = [
 
 export const PERSONAL = {
   youtube: [
-    { name: 'Trail Tales Travel', url: 'https://www.youtube.com/@trailtalestravel', description: 'Travel vlogs and hiking adventures.' },
-    { name: 'Drone Relaxation', url: 'https://www.youtube.com/@dronerelaxationvideos', description: 'Cinematic drone footage for relaxation.' }
+    { name: 'Trail Tales Travel', url: 'https://www.youtube.com/@trailtalestravel', description: 'Travel vlogs and hiking adventures.', icon: '/icons/trail-tales-logo.webp', subscribers: '1,642' },
+    { name: 'Drone Relaxation', url: 'https://www.youtube.com/@dronerelaxationvideos', description: 'Cinematic drone footage for relaxation.', icon: '/icons/drone-yt-logo.png', subscribers: '11,700' },
   ],
   apps: [
-    { name: 'Flighty', description: 'Best-in-class flight tracking.' },
-    { name: 'AllTrails', description: 'Essential for hiking and trail discovery.' },
-    { name: 'Been', description: 'Tracking countries visited around the world.' }
+    { name: 'Flighty', description: 'Flighty is invaluable for keeping track of all upcoming flights, but it also has nerdy stats for all of your past flights. The UI is very intuitive and slick.', icon: '/icons/flighty-icon.jpg' },
+    { name: 'AllTrails', description: 'Alltrails is great for navigating while hiking and discovering new trails whenever and wherever I travel.', icon: '/icons/alltrails-logo.webp' },
+    { name: 'Babbel', description: 'I really enjoy learning new languages and Babbel has been invaluable in improving my skills. I am currently brushing up on French!', icon: '/icons/babbel-logo.webp' },
   ],
   photos: [
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1433086566608-e9373f6672da?q=80&w=2070&auto=format&fit=crop'
+   { src: '/photography/deadvlei.jpeg', caption: 'Deadvlei, Namibia' },
+    { src: '/photography/machu-picchu.jpeg', caption: 'Machu Picchu, Peru' },
+    { src: '/photography/angkor-wat.jpeg', caption: 'Angkor Wat, Cambodia' },
+    { src: '/photography/colca-canyon.jpeg', caption: 'Colca Canyon, Peru' },
+    { src: '/photography/chongqing.jpeg', caption: 'Chongqing, China' },
+    { src: '/photography/arequipa.jpeg', caption: 'Arequipa, Peru' },
+    { src: '/photography/hummingbird1.jpeg', caption: 'Hummingbird, Costa Rica' },
+    { src: '/photography/hummingbird2.jpeg', caption: 'Hummingbird, Ecuador' },
+    { src: '/photography/zebra.jpeg', caption: 'Zebra, South Africa' },
   ],
   stockLinks: [
-    { name: 'Adobe Stock', url: '#' },
-    { name: 'Shutterstock', url: '#' }
+    { name: 'Adobe Stock', url: 'https://stock.adobe.com/contributor/208637456/kristian%20allin' },
+    { name: 'Shutterstock', url: 'https://www.shutterstock.com/g/Kristian+Allin/video' },
+    { name: 'Getty Images', url: 'https://www.istockphoto.com/portfolio/KristianAllin?assettype=film' },
+    { name: 'Envato', url: 'https://videohive.net/user/kristianallin/portfolio' },
   ],
-  visitedCountries: ['Canada', 'USA', 'UK', 'Germany', 'France', 'Italy', 'Spain', 'Switzerland', 'Austria', 'Japan', 'Thailand', 'Vietnam']
+  visitedCountries: [
+    'Albania', 'Andorra', 'Austria', 'Belgium', 'Bosnia & Herzegovina', 'Bulgaria',
+    'Cambodia', 'Canada', 'China', 'Colombia', 'Costa Rica', 'Croatia', 'Czechia',
+    'Denmark', 'Ecuador', 'Estonia', 'Eswatini', 'Finland', 'France', 'Georgia',
+    'Germany', 'Greece', 'Hong Kong', 'Hungary', 'Indonesia', 'Ireland', 'Italy',
+    'Japan', 'Latvia', 'Lesotho', 'Liechtenstein', 'Luxembourg', 'Macao', 'Malaysia',
+    'Mexico', 'Moldova', 'Monaco', 'Montenegro', 'Morocco', 'Namibia', 'Netherlands',
+    'New Zealand', 'North Macedonia', 'Peru', 'Philippines', 'Poland', 'Portugal',
+    'Qatar', 'Romania', 'San Marino', 'Serbia', 'Singapore', 'Slovakia', 'Slovenia',
+    'South Africa', 'South Korea', 'Spain', 'Sri Lanka', 'Sweden', 'Switzerland',
+    'Taiwan', 'Thailand', 'Turkey', 'Ukraine', 'United Kingdom', 'United States',
+    'Vatican', 'Vietnam', 'Zambia', 'Zimbabwe',
+  ],
+  visitedCountryCodes: [
+    'AL', 'AD', 'AT', 'BE', 'BA', 'BG', 'KH', 'CA', 'CN', 'CO', 'CR', 'HR', 'CZ',
+    'DK', 'EC', 'EE', 'SZ', 'FI', 'FR', 'GE', 'DE', 'GR', 'HK', 'HU', 'ID', 'IE',
+    'IT', 'JP', 'LV', 'LS', 'LI', 'LU', 'MO', 'MY', 'MX', 'MD', 'MC', 'ME', 'MA',
+    'NA', 'NL', 'NZ', 'MK', 'PE', 'PH', 'PL', 'PT', 'QA', 'RO', 'SM', 'RS', 'SG',
+    'SK', 'SI', 'ZA', 'KR', 'ES', 'LK', 'SE', 'CH', 'TW', 'TH', 'TR', 'UA', 'GB',
+    'US', 'VA', 'VN', 'ZM', 'ZW',
+  ]
 };
 
 export const NAV_LINKS = [

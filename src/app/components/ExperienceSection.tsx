@@ -9,7 +9,7 @@ interface ExperienceSectionProps {
 }
 
 export const ExperienceSection = ({ expandedItems, onToggle }: ExperienceSectionProps) => (
-  <section id="experience" className="section-padding">
+  <section id="experience" className="section-padding !pt-8">
     <SectionHeader title="Work Experience" icon={Briefcase} />
     <div className="space-y-6">
       {EXPERIENCE.map(exp => (

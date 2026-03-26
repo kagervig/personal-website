@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { ChevronUp } from 'lucide-react';
 import { NAV_LINKS } from '@/app/data';
 import { Nav } from '@/app/components/Nav';
 import { Hero } from '@/app/components/Hero';
@@ -13,6 +15,7 @@ import { PersonalSection } from '@/app/components/PersonalSection';
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
 
   const toggleExpand = (id: string) => {
@@ -21,6 +24,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 400);
       const scrollPosition = window.scrollY + 100;
 
       for (const { id } of NAV_LINKS) {
@@ -49,6 +53,20 @@ export default function Home() {
         <EducationSection />
         <PersonalSection />
       </main>
+
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="fixed bottom-8 right-8 z-50 p-3 bg-ink text-white dark:text-black rounded-2xl shadow-lg hover:bg-accent transition-colors"
+          >
+            <ChevronUp size={20} />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

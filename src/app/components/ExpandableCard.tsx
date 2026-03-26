@@ -27,7 +27,9 @@ export const ExpandableCard = ({
     layout
     className={cn(
       "group relative overflow-hidden rounded-2xl border transition-all duration-300",
-      isOpen ? "bg-white shadow-xl border-accent/20" : "bg-white/50 border-gray-200 hover:border-accent/40 hover:shadow-md"
+      isOpen
+        ? "bg-white dark:bg-gray-800 shadow-xl border-accent/20"
+        : "bg-white/50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 hover:border-accent/40 hover:shadow-md"
     )}
   >
     <button
@@ -35,26 +37,30 @@ export const ExpandableCard = ({
       className="w-full text-left p-6 md:p-8 focus:outline-none"
     >
       <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-        <div className="space-y-1">
-          <div className="flex items-center gap-2">
+        <div className="space-y-1 text-center md:text-left">
+          <div className="flex items-center justify-center md:justify-start gap-2">
             <h3 className="text-xl font-bold text-ink">{title}</h3>
-            {period && <span className="text-xs font-medium px-2 py-1 bg-gray-100 rounded-full text-muted">{period}</span>}
+            {period && (
+              <span className="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-muted">
+                {period}
+              </span>
+            )}
           </div>
           <p className="text-accent font-medium">{subtitle}</p>
           <p className="text-muted text-sm mt-2">{description}</p>
         </div>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          className="text-muted group-hover:text-accent transition-colors"
+          className="text-muted group-hover:text-accent transition-colors self-center md:self-auto mx-auto md:mx-0"
         >
           <ChevronDown size={20} />
         </motion.div>
       </div>
 
       {tags && (
-        <div className="flex flex-wrap gap-2 mt-4">
+        <div className="flex flex-wrap justify-center md:justify-start gap-2 mt-4">
           {tags.map(tag => (
-            <span key={tag} className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 bg-gray-100 text-gray-500 rounded">
+            <span key={tag} className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded">
               {tag}
             </span>
           ))}
@@ -70,7 +76,7 @@ export const ExpandableCard = ({
           exit={{ height: 0, opacity: 0 }}
           transition={{ duration: 0.3, ease: 'easeInOut' }}
         >
-          <div className="px-6 md:px-8 pb-8 pt-0 border-t border-gray-100">
+          <div className="px-6 md:px-8 pb-8 pt-0 border-t border-gray-100 dark:border-gray-700">
             <ul className="mt-6 space-y-3">
               {details.map((detail, idx) => (
                 <motion.li

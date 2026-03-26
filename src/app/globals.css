@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode */
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
@@ -17,10 +20,21 @@
   body {
     @apply font-sans bg-bg text-ink antialiased;
   }
+
+  /* Dark mode colour overrides — Tailwind utilities that reference these vars update automatically */
+  html.dark {
+    --color-bg: #111827;
+    --color-ink: #f9fafb;
+    --color-muted: #9ca3af;
+  }
 }
 
 .glass {
   @apply bg-white/70 backdrop-blur-md border border-white/20;
+}
+
+html.dark .glass {
+  @apply bg-gray-900/70 border-gray-700/50;
 }
 
 .section-padding {

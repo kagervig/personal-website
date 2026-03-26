@@ -3,12 +3,12 @@ import { EDUCATION } from '@/app/data';
 import { SectionHeader } from './SectionHeader';
 
 export const EducationSection = () => (
-  <section id="education" className="section-padding">
+  <section id="education" className="section-padding !pt-8">
     <SectionHeader title="Education" icon={GraduationCap} />
     <div className="grid grid-cols-1 gap-8">
       {EDUCATION.map((edu, idx) => (
-        <div key={idx} className="p-8 bg-white border border-gray-200 rounded-2xl shadow-sm flex flex-col md:flex-row gap-6 items-center md:items-start">
-          <div className="w-20 h-20 flex-none bg-gray-50 rounded-2xl p-2 flex items-center justify-center overflow-hidden border border-gray-100">
+        <div key={idx} className="p-8 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-sm flex flex-col md:flex-row gap-6 items-center md:items-start">
+          <div className="w-20 h-20 flex-none bg-gray-50 dark:bg-gray-700 rounded-2xl p-2 flex items-center justify-center overflow-hidden border border-gray-100 dark:border-gray-600">
             <img
               src={edu.logo}
               alt={`${edu.school} logo`}
