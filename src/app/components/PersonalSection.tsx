@@ -21,7 +21,7 @@ export const PersonalSection = () => (
       <img
         src="/profile.jpg"
         alt="Kristian Allin"
-        className="w-40 h-40 rounded-3xl object-cover flex-shrink-0 shadow-lg mx-auto md:mx-0"
+        className="w-60 h-60 rounded-3xl object-cover flex-shrink-0 shadow-lg mx-auto md:mx-0"
       />
       <div className="space-y-4 text-muted leading-relaxed">
         <p>
