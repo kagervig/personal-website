@@ -98,7 +98,7 @@ export const TravelMap = ({ visitedCountryCodes }: TravelMapProps) => {
 
   const handleWheel = (e: React.WheelEvent) => {
     e.preventDefault();
-    const factor = e.deltaY < 0 ? 1.2 : 1 / 1.2;
+    const factor = e.deltaY < 0 ? 1.05 : 1 / 1.05;
     const rect = svgRef.current!.getBoundingClientRect();
     const mx = (e.clientX - rect.left) * (WIDTH / rect.width);
     const my = (e.clientY - rect.top) * (HEIGHT / rect.height);
