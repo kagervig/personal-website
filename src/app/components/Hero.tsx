@@ -53,14 +53,14 @@ export const Hero = () => {
               View Projects
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/kagervig"
               target="_blank"
               className="p-3 md:p-4 bg-ink text-white dark:text-black hover:bg-accent rounded-2xl transition-all hover:scale-105 active:scale-95"
             >
               <GithubIcon size={20} />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/kristian-allin/"
               target="_blank"
               className="p-3 md:p-4 bg-ink text-white dark:text-black hover:bg-accent rounded-2xl transition-all hover:scale-105 active:scale-95"
             >
