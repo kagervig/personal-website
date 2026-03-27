@@ -56,12 +56,22 @@ export const Nav = ({ activeSection, isMenuOpen, setIsMenuOpen }: NavProps) => {
           </div>
 
           {/* Mobile Nav Toggle */}
-          <button
-            className="md:hidden p-2 text-ink"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <a
+              href="/Kristian-Allin-Resume.pdf"
+              target="_blank"
+              className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl text-sm font-bold hover:bg-accent/90 transition-all"
+            >
+              <Download size={14} />
+              Resume
+            </a>
+            <button
+              className="p-2 text-ink"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
 
