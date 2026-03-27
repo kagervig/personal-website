@@ -70,13 +70,14 @@ export const Hero = () => {
         </motion.div>
       </div>
 
-      <motion.div
+      <motion.button
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 text-muted"
+        onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+        className="absolute bottom-24 md:bottom-12 left-1/2 -translate-x-1/2 z-20 text-muted hover:text-accent transition-colors cursor-pointer"
       >
         <ChevronDown size={32} />
-      </motion.div>
+      </motion.button>
     </section>
   );
 };

@@ -46,7 +46,7 @@ export const Nav = ({ activeSection, isMenuOpen, setIsMenuOpen }: NavProps) => {
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             </button>
             <a
-              href="/Resume.pdf"
+              href="/resume.pdf"
               target="_blank"
               className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl text-sm font-bold hover:bg-accent/90 transition-all"
             >
@@ -58,7 +58,7 @@ export const Nav = ({ activeSection, isMenuOpen, setIsMenuOpen }: NavProps) => {
           {/* Mobile Nav Toggle */}
           <div className="md:hidden flex items-center gap-2">
             <a
-              href="/Resume.pdf"
+              href="/resume.pdf"
               target="_blank"
               className="flex items-center gap-2 px-4 py-2 bg-accent text-white rounded-xl text-sm font-bold hover:bg-accent/90 transition-all"
             >
