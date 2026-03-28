@@ -35,7 +35,7 @@ export const EXPERIENCE = [
     description: 'Led the re-architecture of Keysight\'s product information management system — the data backbone behind a 4,000+ SKU catalogue serving aerospace, defence, and electronics customers globally.',
     details: [
       'Keysight\'s product data had accumulated five years of ungoverned, inconsistent records across every business line. No single person understood the full scope of the problem. I was brought in to fix it.',
-      'Started by conducting a full audit — writing multi-table SQL queries across the PIM database to surface data quality issues at scale, then working with domain experts in each business unit to understand what correct data actually looked like.',
+      'Designed and executed data remediation workflows in SQL and Python — joining across multiple tables to surface quality issues at scale, then scripting automated fixes across 90k+ product records across business lines.',
       'Defined a new data model and taxonomy, restructuring how 4,000+ products were categorised on the web. This was a ground-up rethink of how product information was structured within the existing system to support a significant investment in eCommerce. Without good data, the web development would be worthless.',
       'I designed the governance model alongside the data model: clear ownership rules, defined data entry standards, and accountability structures so the system wouldn\'t degrade again after launch.',
       'Wrote Python scripts to automate data cleaning and normalisation workflows — processing tens of thousands of records that couldn\'t be fixed manually at any reasonable speed.',
