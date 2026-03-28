@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ExternalLink } from 'lucide-react';
 import { cn } from '@/app/lib/utils';
 
 interface ExpandableCardProps {
@@ -9,6 +9,7 @@ interface ExpandableCardProps {
   description: string;
   details: string[];
   tags?: string[];
+  link?: string;
   isOpen: boolean;
   onToggle: () => void;
 }
@@ -20,6 +21,7 @@ export const ExpandableCard = ({
   description,
   details,
   tags,
+  link,
   isOpen,
   onToggle
 }: ExpandableCardProps) => (
@@ -91,6 +93,19 @@ export const ExpandableCard = ({
                 </motion.li>
               ))}
             </ul>
+            {link && (
+              <div className="mt-6">
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+                  onClick={e => e.stopPropagation()}
+                >
+                  View project <ExternalLink size={14} />
+                </a>
+              </div>
+            )}
           </div>
         </motion.div>
       )}

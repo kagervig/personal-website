@@ -5,6 +5,7 @@ export const PROJECTS = [
     year: '2026',
     description: 'A full-stack multi-city flight search engine built from scratch.',
     tech: ['Java', 'REST', 'React', 'Next.js', 'PostgreSQL', 'Render', 'Vercel', "Dijkstra's Algorithm"],
+    link: 'https://flight-search-xi-three.vercel.app/',
     details: [
       'Designed and built a full-stack multi-city flight search engine from scratch.',
       "Solves a real-world variant of the Travelling Salesman Problem: given a home city and up to 5 destinations, builds a weighted airport graph and applies Dijkstra's algorithm to find the cheapest or fastest itinerary.",
