@@ -14,7 +14,7 @@ export const PROJECTS = [
       "Vercel",
       "Dijkstra's Algorithm",
     ],
-    link: "https://flight-search-xi-three.vercel.app/",
+    link: "https://cityhopper.vercel.app/",
     details: [
       "Designed and built a full-stack multi-city flight search engine from scratch.",
       "Solves a real-world variant of the Travelling Salesman Problem: given a home city and up to 5 destinations, builds a weighted airport graph and applies Dijkstra's algorithm to find the cheapest or fastest itinerary.",
