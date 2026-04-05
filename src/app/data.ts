@@ -16,24 +16,28 @@ export const PROJECTS = [
     ],
     link: "https://cityhopper.vercel.app/",
     details: [
-      "Designed and built a full-stack multi-city flight search engine from scratch.",
       "Solves a real-world variant of the Travelling Salesman Problem: given a home city and up to 5 destinations, builds a weighted airport graph and applies Dijkstra's algorithm to find the cheapest or fastest itinerary.",
-      "Deployed independently on Render (backend) and Vercel (frontend).",
-      "Searches through 48,900 daily flights, of which 18,478 disctinct routes connect 1,788 airports.",
+      "Finds the combination of flights to all target destinations with the lowest total price, or the shortest total travel time.",
+      "Deployed independently on Railway (backend), Vercel (frontend), Render (PostgreSQL DB).",
+      "Searches through 48,900 daily flights, of which 8,287 disctinct routes connect 1,357 airports.",
     ],
   },
-  // {
-  //   id: 'project-two',
-  //   title: 'Project Two',
-  //   year: '2026',
-  //   description: 'Advanced flight search engine with complex graph algorithms.',
-  //   tech: ['Java', 'React', 'PostgreSQL'],
-  //   details: [
-  //     'Designed and built a full-stack multi-city flight search engine from scratch: Java REST backend, React/Next.js frontend, PostgreSQL database.',
-  //     "Solves a real-world variant of the Travelling Salesman Problem using Dijkstra's algorithm to find optimal itineraries.",
-  //     'Focuses on high-performance data processing and intuitive UI for complex travel planning.'
-  //   ]
-  // }
+  {
+    id: "autoguessr",
+    title: "AutoGuessr",
+    year: "2026",
+    description: "A game for car nerds - identify the car before the clock runs out.",
+    tech: ["Next.js", "Typescript", "PostgreSQL", "Gemini AI Pipeline"],
+    details: [
+      "Next.js and Typescript frontend hosted on Vercel.",
+      "Image pipeline: Cloudinary-backed ingestion, staging, and review workflow.",
+      "AI-assisted tagging integration (Google Gemini).",
+      "Admin panel for tagging and publishing vehicle images with make, model, year, rarity, etc.",
+      "Community tagging system with agreement thresholds for crowdsourced validation.",
+      "Game engine with configurable difficulty tiers (hardcore eligible, era/region filtering).",
+      "Four difficulty modes from easy to hardcore, each with differing scoring models.",
+    ],
+  },
 ];
 
 export const EXPERIENCE = [
