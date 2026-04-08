@@ -27,6 +27,7 @@ export const PROJECTS = [
     title: "AutoGuessr",
     year: "2026",
     description: "A game for car nerds - identify the car before the clock runs out.",
+    link: "https://autoguessr.vercel.app/",
     tech: ["Next.js", "Typescript", "PostgreSQL", "Gemini AI Pipeline"],
     details: [
       "Next.js and Typescript frontend hosted on Vercel.",
