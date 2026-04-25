@@ -222,6 +222,7 @@ export const PERSONAL = {
     "Czechia",
     "Denmark",
     "Ecuador",
+    "Egypt",
     "Estonia",
     "Eswatini",
     "Finland",
@@ -359,5 +360,155 @@ export const NAV_LINKS = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "education", label: "Education" },
+  { id: "flashcards", label: "Flashcards" },
   { id: "personal", label: "Personal" },
+];
+
+export const FLASHCARDS = [
+  {
+    id: "array",
+    category: "Data Structures",
+    question: "Array",
+    answer: "A collection of elements identified by index or key.",
+    details: [
+      "Pros: Constant time access by index O(1), cache friendly.",
+      "Cons: Fixed size (if static), costly insertions/deletions O(n) as elements must be shifted.",
+      "Best for: When you know the size in advance and need fast access."
+    ]
+  },
+  {
+    id: "linked-list",
+    category: "Data Structures",
+    question: "Linked List",
+    answer: "A linear collection of data elements whose order is not given by their physical placement in memory.",
+    details: [
+      "Pros: Dynamic size, fast insertion/deletion O(1) if you have a pointer to the node.",
+      "Cons: Slow access O(n) as you must traverse from the head, extra memory for pointers.",
+      "Best for: When you need frequent insertions/deletions and don't need random access."
+    ]
+  },
+  {
+    id: "hash-table",
+    category: "Data Structures",
+    question: "Hash Table",
+    answer: "A data structure that maps keys to values using a hash function.",
+    details: [
+      "Pros: Very fast search, insertion, and deletion O(1) on average.",
+      "Cons: Collision handling can slow it down, no ordering, high memory usage.",
+      "Best for: Quick lookups, caching, and counting occurrences."
+    ]
+  },
+  {
+    id: "stack",
+    category: "Data Structures",
+    question: "Stack",
+    answer: "A LIFO (Last-In-First-Out) data structure.",
+    details: [
+      "Operations: Push (add), Pop (remove), Peek (view top).",
+      "Complexity: O(1) for all main operations.",
+      "Use cases: Undo/Redo, expression parsing, recursion (call stack)."
+    ]
+  },
+  {
+    id: "queue",
+    category: "Data Structures",
+    question: "Queue",
+    answer: "A FIFO (First-In-First-Out) data structure.",
+    details: [
+      "Operations: Enqueue (add to back), Dequeue (remove from front).",
+      "Complexity: O(1) for all main operations.",
+      "Use cases: Task scheduling, message buffers, Breadth-First Search (BFS)."
+    ]
+  },
+  {
+    id: "binary-search-tree",
+    category: "Data Structures",
+    question: "Binary Search Tree (BST)",
+    answer: "A tree where each node has at most two children, with left < parent < right.",
+    details: [
+      "Pros: Ordered data, efficient search/insert O(log n) if balanced.",
+      "Cons: Can become skewed (degraded to O(n)) if not balanced (like an AVL or Red-Black tree).",
+      "Best for: Sorted data retrieval and range queries."
+    ]
+  },
+  {
+    id: "big-o",
+    category: "Algorithms",
+    question: "Big O Notation",
+    answer: "A mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity.",
+    details: [
+      "O(1): Constant time (Accessing array index).",
+      "O(log n): Logarithmic time (Binary Search).",
+      "O(n): Linear time (Iterating through a list).",
+      "O(n log n): Linearithmic time (Merge Sort, Quick Sort).",
+      "O(n²): Quadratic time (Nested loops, Bubble Sort)."
+    ]
+  },
+  {
+    id: "rest-api",
+    category: "Web Development",
+    question: "REST API",
+    answer: "Representational State Transfer. An architectural style for providing standards between computer systems on the web.",
+    details: [
+      "Stateless: Each request contains all info needed to process it.",
+      "Methods: GET (read), POST (create), PUT (update), DELETE (remove).",
+      "Idempotency: Making the same request multiple times has the same effect as making it once (GET, PUT, DELETE)."
+    ]
+  },
+  {
+    id: "sql-nosql",
+    category: "Databases",
+    question: "SQL vs NoSQL",
+    answer: "Relational (SQL) vs Non-relational (NoSQL) databases.",
+    details: [
+      "SQL: Structured, predefined schema, good for complex joins and ACID compliance (PostgreSQL, MySQL).",
+      "NoSQL: Flexible schema, horizontal scaling, better for hierarchical data or rapid development (MongoDB, Redis).",
+      "Vertical vs Horizontal: SQL usually scales vertically (more power), NoSQL scales horizontally (more servers)."
+    ]
+  },
+  {
+    id: "oop",
+    category: "Software Engineering",
+    question: "OOP Principles",
+    answer: "The four pillars of Object-Oriented Programming.",
+    details: [
+      "Encapsulation: Bundling data and methods that work on that data within a single unit (class).",
+      "Abstraction: Hiding complex implementation details and showing only the necessary features.",
+      "Inheritance: Mechanism where one class acquires the properties of another.",
+      "Polymorphism: The ability of different classes to be treated as instances of the same class through the same interface."
+    ]
+  },
+  {
+    id: "recursion",
+    category: "Algorithms",
+    question: "Recursion vs Iteration",
+    answer: "Two ways to execute a set of instructions repeatedly.",
+    details: [
+      "Recursion: A function calls itself. Pros: Cleaner code for trees/graphs. Cons: Risk of stack overflow, usually higher memory overhead.",
+      "Iteration: Uses loops (for/while). Pros: More memory efficient, no stack overflow risk. Cons: Can be more verbose for complex data structures.",
+      "Base Case: Recursion MUST have a base case to terminate."
+    ]
+  },
+  {
+    id: "git-merge-rebase",
+    category: "Tools",
+    question: "Git Merge vs Rebase",
+    answer: "Two ways to integrate changes from one branch into another.",
+    details: [
+      "Merge: Creates a new 'merge commit' that joins histories. Pros: Preserves history exactly as it happened. Cons: Can make history messy with many branches.",
+      "Rebase: Moves the entire branch to begin on the tip of the master branch. Pros: Creates a clean, linear history. Cons: Rewrites history (don't do it on public branches!)."
+    ]
+  },
+  {
+    id: "testing",
+    category: "Software Engineering",
+    question: "Types of Testing",
+    answer: "Different levels of verification for software.",
+    details: [
+      "Unit Test: Testing individual components or functions in isolation.",
+      "Integration Test: Testing how different modules work together.",
+      "End-to-End (E2E) Test: Testing the entire application flow from start to finish (like a user would).",
+      "TDD (Test Driven Development): Writing tests before writing the actual code."
+    ]
+  }
 ];

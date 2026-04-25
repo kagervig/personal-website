@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Interview Command Center</title>
+    <style>
+        :root {
+            --bank-green: #10b981;
+            --bank-red: #ef4444;
+            --bg: #0f172a;
+            --card: #1e293b;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --highlight: #fbbf24;
+            --quiz-blue: #3b82f6;
+            --accent: #6366f1;
+            --sidebar: #020617;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        .app-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            height: 100vh;
+        }
+
+        /* Sidebar */
+        aside {
+            background: var(--sidebar);
+            border-right: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+        }
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--bank-green);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .nav-item:hover { background: var(--card); color: var(--text); }
+        .nav-item.active { background: var(--accent); color: white; }
+
+        /* Main Content */
+        main {
+            padding: 40px;
+            overflow-y: auto;
+            background: var(--bg);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.2s ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: var(--card);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+        }
+
+        /* Day Navigation */
+        .day-nav {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--card);
+            padding: 10px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-top: 10px;
+        }
+        .day-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .day-btn:hover { background: var(--border); }
+
+        /* LeetCode Tab */
+        .lc-problem-card {
+            border-left: 4px solid var(--quiz-blue);
+            background: #1e293b80;
+            padding: 24px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .lc-title { font-size: 1.3rem; font-weight: 800; color: white; display: block; margin-bottom: 12px; }
+        .lc-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; line-height: 1.6; background: #0f172a40; padding: 15px; border-radius: 8px; }
+        .lc-strategy { background: #0f172a; padding: 20px; border-radius: 10px; border: 1px solid var(--border); }
+
+        /* General UI */
+        .tag {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-right: 5px;
+        }
+        .tag-new { background: #dcfce7; color: #166534; }
+        .tag-revision { background: #fef3c7; color: #92400e; }
+        .tag-java { background: #78350f; color: #fcd34d; }
+        .tag-sql { background: #1e3a8a; color: #93c5fd; }
+        .tag-dsa { background: #334155; color: #cbd5e1; }
+        .tag-best { background: #065f46; color: #dcfce7; }
+        .tag-primary { background: var(--accent); color: white; }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-success { background: var(--bank-green); color: white; }
+        .btn-danger { background: var(--bank-red); color: white; }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+        .btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+        .task-item {
+            background: #1e293b80;
+            border: 1px solid var(--border);
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-mini { height: 8px; background: #334155; border-radius: 4px; margin: 10px 0; overflow: hidden; }
+        .progress-mini-fill { height: 100%; background: var(--bank-green); transition: width 0.4s ease; }
+
+        /* Java Drills Section */
+        .drill-area {
+            background: #0f172a;
+            color: #38bdf8;
+            font-family: 'Fira Code', monospace;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            width: 100%;
+            min-height: 200px;
+            resize: vertical;
+            margin: 15px 0;
+            font-size: 1rem;
+            outline: none;
+        }
+        .drill-area:focus { border-color: var(--accent); }
+
+        /* Quiz Feedback */
+        .exp-box {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            margin-top: 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        /* Flashcards */
+        .flashcard-wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .flashcard-container {
+            perspective: 1000px;
+            height: 400px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .flashcard-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+        .flashcard-container.flipped .flashcard-inner { transform: rotateY(180deg); }
+        .flashcard-front, .flashcard-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            border-radius: 20px;
+            border: 2px solid var(--border);
+            box-sizing: border-box;
+        }
+        .flashcard-front { background: var(--card); z-index: 2; }
+        .flashcard-back { 
+            background: #1e3a8a; 
+            color: white; 
+            transform: rotateY(180deg); 
+            z-index: 1;
+            overflow-y: auto;
+        }
+
+        .fc-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Quiz Options Styling */
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            background: #1e293b;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            color: var(--text);
+            text-align: left;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .quiz-option:hover:not(:disabled) {
+            border-color: var(--accent);
+            background: #334155;
+            transform: translateX(5px);
+        }
+        .quiz-option.correct {
+            background: #064e3b !important;
+            border-color: var(--bank-green) !important;
+            color: #dcfce7;
+        }
+        .quiz-option.incorrect {
+            background: #7f1d1d !important;
+            border-color: var(--bank-red) !important;
+            color: #fee2e2;
+        }
+        .quiz-option:disabled {
+            cursor: not-allowed;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <aside>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            BankPrep OS
+        </div>
+        <nav>
+            <div class="nav-item active" onclick="switchTab('mission', this)">
+                <span>📅</span> Today's Mission
+            </div>
+            <div class="nav-item" onclick="switchTab('leetcode', this)">
+                <span>💻</span> LeetCode Drill
+            </div>
+            <div class="nav-item" onclick="switchTab('drills', this)">
+                <span>☕</span> Java Syntax Drills
+            </div>
+            <div class="nav-item" onclick="switchTab('courses', this)">
+                <span>🎓</span> Scrimba Courses
+            </div>
+            <div class="nav-item" onclick="switchTab('quiz', this)">
+                <span>🧠</span> Best Practices
+            </div>
+            <div class="nav-item" onclick="switchTab('flashcards', this)">
+                <span>🗂️</span> Knowledge Drill
+            </div>
+        </nav>
+
+        <div style="margin-top: auto; padding: 20px; background: #1e293b40; border-radius: 12px; border: 1px solid var(--border);">
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 5px;">TOTAL MASTERY</div>
+            <div id="global-progress-val" style="font-size: 1.2rem; font-weight: 800;">0%</div>
+            <div class="progress-mini"><div id="global-progress-fill" class="progress-mini-fill" style="width: 0%"></div></div>
+        </div>
+    </aside>
+
+    <main>
+        <header>
+            <div>
+                <h1 id="page-title">Today's Mission</h1>
+                <div class="day-nav">
+                    <button class="day-btn" onclick="changeDay(-1)">← Previous</button>
+                    <span id="display-day" style="font-weight: 800; color: var(--bank-green); min-width: 60px; text-align: center;">Day 1</span>
+                    <button class="day-btn" onclick="changeDay(1)">Next →</button>
+                </div>
+            </div>
+            <div style="text-align: right">
+                <div id="countdown-timer" style="font-weight: 800; color: var(--bank-red); font-size: 1.1rem;"></div>
+                <div id="current-date" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 5px;"></div>
+            </div>
+        </header>
+
+        <!-- TAB: MISSION DASHBOARD -->
+        <div id="mission-tab" class="tab-content active">
+            <div class="summary-grid">
+                <!-- Learning Path -->
+                <div class="card">
+                    <h2 style="margin-top:0">🎯 Daily Objectives</h2>
+                    <div id="mission-list">
+                        <!-- Dynamic -->
+                    </div>
+                </div>
+
+                <!-- Daily Stats -->
+                <div>
+                    <div class="card">
+                        <h2 style="margin-top:0">📊 Day Progress</h2>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <div style="display:flex; justify-content:space-between; font-size: 0.9rem;">
+                                <span>LeetCode New/Revision</span>
+                                <span id="stat-lc">0/0</span>
+                            </div>
+                            <div class="progress-mini"><div id="stat-lc-fill" class="progress-mini-fill"></div></div>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <div style="display:flex; justify-content:space-between; font-size: 0.9rem;">
+                                <span>Best Practice Quiz</span>
+                                <span id="stat-quiz">0/5</span>
+                            </div>
+                            <div class="progress-mini"><div id="stat-quiz-fill" class="progress-mini-fill"></div></div>
+                        </div>
+
+                        <div style="margin-bottom: 0;">
+                            <div style="display:flex; justify-content:space-between; font-size: 0.9rem;">
+                                <span>Flashcards Completed</span>
+                                <span id="stat-fc">0/0</span>
+                            </div>
+                            <div class="progress-mini"><div id="stat-fc-fill" class="progress-mini-fill"></div></div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="border-left: 4px solid var(--highlight);">
+                        <h2 style="margin-top:0">🔄 Review Queue</h2>
+                        <div id="review-list" style="font-size: 0.9rem; color: var(--text-muted);">
+                            <!-- Dynamic -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: LEETCODE -->
+        <div id="leetcode-tab" class="tab-content">
+            <div class="card" style="border-left: 4px solid var(--highlight); margin-bottom: 30px;">
+                <h2 style="margin-top:0">💡 Heap (Priority Queue) Masterclass</h2>
+                <div class="summary-grid" style="grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <strong style="color:var(--bank-green)">Core Operations:</strong>
+                        <ul style="font-size: 0.9rem; color: var(--text-muted); padding-left: 20px; margin-top: 10px;">
+                            <li><strong>Push (Insert):</strong> Add to the end of the array, then <em>Bubble Up</em> until the heap property is restored. Time: O(log N).</li>
+                            <li><strong>Pop (Extract):</strong> Remove the root (min/max), move the last element to the root, then <em>Bubble Down</em> until the heap property is restored. Time: O(log N).</li>
+                            <li><strong>Peek:</strong> Return the root element without removing it. Time: O(1).</li>
+                            <li><strong>Heapify:</strong> Converting an existing array into a heap. Bottom-up approach is more efficient. Time: O(N).</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong style="color:var(--bank-green)">When to use a Heap?</strong>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 10px;">
+                            Use a Heap (PriorityQueue in Java) when you need to repeatedly find the <strong>K-th</strong> largest/smallest element, or when dealing with a <strong>Top-K</strong> requirement. It is the gold standard for "streaming data" where you don't have the whole set at once.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="lc-container">
+                <!-- Dynamic -->
+            </div>
+        </div>
+
+        <!-- TAB: DRILLS -->
+        <div id="drills-tab" class="tab-content">
+            <div class="card" style="max-width: 900px; margin: 0 auto;">
+                <div id="drill-intro">
+                    <h2>Survival Syntax Challenge</h2>
+                    <p>Type the correct Java syntax for the given task. One mistake ends the run. Today's score is your longest streak.</p>
+                    <div style="display:flex; justify-content:space-around; margin: 20px 0;">
+                        <div style="text-align:center;"><span style="font-size: 0.8rem; color: var(--text-muted);">TODAY'S BEST</span><br><span style="font-size: 2rem; font-weight: 800;" id="drill-today-best">0</span></div>
+                        <div style="text-align:center;"><span style="font-size: 0.8rem; color: var(--text-muted);">ALL-TIME RECORD</span><br><span style="font-size: 2rem; font-weight: 800; color: var(--bank-green);" id="drill-all-time">0</span></div>
+                    </div>
+                    <button class="btn btn-primary" style="width:100%" onclick="startDrill()">Start Run</button>
+                </div>
+
+                <div id="drill-container" style="display:none">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+                        <span id="drill-meta" style="color: var(--accent); font-weight: 700;">STREAK: 0</span>
+                        <span id="drill-title" class="tag tag-java">Variables</span>
+                    </div>
+                    <h3 id="drill-prompt" style="margin-bottom: 20px;"></h3>
+                    <textarea id="drill-input" class="drill-area" placeholder="Type your solution here..." spellcheck="false"></textarea>
+                    <div id="drill-feedback"></div>
+                    <div style="display:flex; gap:10px; margin-top:20px;">
+                        <button id="drill-submit" class="btn btn-primary" style="flex:1" onclick="submitDrill()">Check Syntax</button>
+                        <button id="drill-next" class="btn btn-success" style="flex:1; display:none;" onclick="nextDrill()">Continue</button>
+                        <button id="drill-restart" class="btn btn-danger" style="flex:1; display:none;" onclick="renderDrillDashboard()">End Run</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: COURSES -->
+        <div id="courses-tab" class="tab-content">
+            <div class="card">
+                <h2>Scrimba Learning Path</h2>
+                <p style="color:var(--text-muted); margin-bottom:20px;">Ranked by industry importance for your first dev role.</p>
+                <div id="course-list">
+                    <!-- Dynamic -->
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB: QUIZ -->
+        <div id="quiz-tab" class="tab-content">
+            <div id="quiz-intro" class="card">
+                <h2>Themed Technical Verification</h2>
+                <p>Select a domain to practice specific concepts with detailed explanations.</p>
+                <div id="theme-selector" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:25px;"></div>
+            </div>
+            <div id="quiz-container" class="card" style="display:none; max-width: 900px; margin: 0 auto;">
+                <div id="quiz-meta" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;"></div>
+                <h2 id="quiz-question" style="margin-bottom: 30px; font-size: 1.6rem;"></h2>
+                <div id="quiz-options"></div>
+                <div id="quiz-feedback"></div>
+                <button id="quiz-next" class="btn btn-primary" style="display:none; width:100%; margin-top:30px;" onclick="nextQuestion()">Continue Session</button>
+            </div>
+        </div>
+
+        <!-- TAB: FLASHCARDS -->
+        <div id="flashcards-tab" class="tab-content">
+            <div class="flashcard-wrapper">
+                <div class="card" style="text-align: center;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+                        <span id="fc-category" class="tag tag-java">Java</span>
+                        <button class="btn btn-outline" id="fc-struggle-btn" onclick="toggleFCStruggle()">Focus Struggling Topics</button>
+                    </div>
+                    
+                    <div class="flashcard-container" id="fc-container" onclick="flipCard()">
+                        <div class="flashcard-inner">
+                            <div class="flashcard-front">
+                                <h2 id="fc-q" style="font-size: 1.8rem; margin: 0;"></h2>
+                                <p style="color: var(--text-muted); margin-top: 30px; font-size: 0.9rem;">(Click card to reveal)</p>
+                            </div>
+                            <div class="flashcard-back">
+                                <h3 id="fc-a" style="font-size: 1.4rem; color: #fcd34d; margin-bottom: 15px;"></h3>
+                                <div id="fc-d" style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 12px; text-align: left; width: 100%; font-size: 0.95rem;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="fc-controls">
+                        <button class="btn btn-danger" onclick="scoreFC(false)">Struggled ❌</button>
+                        <button class="btn btn-success" onclick="scoreFC(true)">Mastered ✅</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    const SPRINT_START_DATE = new Date('2026-05-02');
+    const TODAY = new Date('2026-04-24');
+    const TODAY_STR = TODAY.toISOString().split('T')[0];
+
+    // --- DATA ---
+    const leetcodeData = [
+        { id: 'lc1', title: 'Two Sum', diff: 'Easy', link: 'https://leetcode.com/problems/two-sum/', desc: 'Find two indices that sum to target.', java: 'Utilize a `HashMap<Integer, Integer>`. Key is number, Value is index. Check `target - num` as you go.' },
+        { id: 'lc2', title: 'Valid Anagram', diff: 'Easy', link: 'https://leetcode.com/problems/valid-anagram/', desc: 'Are two strings anagrams?', java: 'Use a frequency array `int[26]` to track character counts. Increment for s and decrement for t.' },
+        { id: 'lc3', title: 'Valid Palindrome', diff: 'Easy', link: 'https://leetcode.com/problems/valid-palindrome/', desc: 'Check palindrome ignoring alphanumeric.', java: 'Two-pointer approach: left = 0, right = n-1. Skip symbols using Character.isLetterOrDigit().' },
+        { id: 'lc4', title: 'Best Time to Buy/Sell Stock', diff: 'Easy', link: 'https://leetcode.com/problems/best-time-to-buy-and-sell-stock/', desc: 'Maximize profit with one buy/sell.', java: 'Greedy: Keep track of minPrice so far. Calculate currentProfit = currentPrice - minPrice.' },
+        { id: 'lc5', title: 'Reverse Linked List', diff: 'Easy', link: 'https://leetcode.com/problems/reverse-linked-list/', desc: 'Reverse a singly linked list.', java: 'Iterative: prev = null, curr = head. Move nextTemp = curr.next, curr.next = prev, move forward.' },
+        { id: 'lc6', title: 'Valid Parentheses', diff: 'Easy', link: 'https://leetcode.com/problems/valid-parentheses/', desc: 'Check if bracket string is valid.', java: 'Use a Stack. Push closing brackets when opening seen. Pop and match when closing seen.' },
+        { id: 'lc7', title: 'Binary Search', diff: 'Easy', link: 'https://leetcode.com/problems/binary-search/', desc: 'Search target in sorted array.', java: 'Classic binary search: low = 0, high = n-1. Calc mid, update bounds based on comparison.' },
+        { id: 'lc8', title: 'Invert Binary Tree', diff: 'Easy', link: 'https://leetcode.com/problems/invert-binary-tree/', desc: 'Swap all left/right children.', java: 'Recursive: Swap root.left and root.right, then recurse on both.' },
+        { id: 'lc9', title: 'Merge Intervals', diff: 'Medium', link: 'https://leetcode.com/problems/merge-intervals/', desc: 'Merge overlapping time intervals.', java: 'Sort by start time. Maintain merged list. Check overlap with last added interval.' },
+        { id: 'lc10', title: 'Kth Largest Element in an Array', diff: 'Medium', link: 'https://leetcode.com/problems/kth-largest-element-in-an-array/', desc: 'Find the kth largest element in an unsorted array.', java: 'Use a **Min-Heap** (`PriorityQueue<Integer>`). Keep the size of the heap equal to K. When you add a new element, if heap size > K, `poll()` the smallest. The root will be the kth largest. Time: O(N log K).' },
+        { id: 'lc11', title: 'K Closest Points to Origin', diff: 'Medium', link: 'https://leetcode.com/problems/k-closest-points-to-origin/', desc: 'Find the k closest points to (0,0) in a 2D plane.', java: 'Use a **Max-Heap** with a custom comparator: `(a, b) -> dist(b) - dist(a)`. Keep size K. By keeping the *largest* of the closest points at the top, you can easily discard further points. Time: O(N log K).' },
+        { id: 'lc12', title: 'Find K Closest Elements', diff: 'Medium', link: 'https://leetcode.com/problems/find-k-closest-elements/', desc: 'Given a sorted array and a target, find the k closest elements.', java: 'While you can use binary search, a **Max-Heap** is intuitive: store elements by their distance from target. If distance is equal, prefer smaller value. Keep size K. `Collections.sort()` the final result. Time: O(N log K).' },
+        { id: 'lc13', title: 'Merge K Sorted Lists', diff: 'Hard', link: 'https://leetcode.com/problems/merge-k-sorted-lists/', desc: 'Merge k sorted linked lists and return it as one sorted list.', java: 'Add the first node of each list to a **Min-Heap**. Repeatedly `poll()` the smallest node, add it to your result, and add its `next` node back to the heap. Time: O(N log K) where N is total nodes and K is number of lists.' },
+        { id: 'lc14', title: 'Find Median from Data Stream', diff: 'Hard', link: 'https://leetcode.com/problems/find-median-from-data-stream/', desc: 'Maintain the median of a stream of numbers.', java: 'The **Two Heaps** pattern: use a **Max-Heap** for the lower half and a **Min-Heap** for the upper half. Ensure their sizes differ by at most 1. The median is either the top of the larger heap or the average of both tops. Time: O(log N) per add.' }
+    ];
+
+    const quizPool = [
+        { 
+            id: 'q1', theme: 'Software Quality', q: 'What is the primary purpose of a Linter?', 
+            opts: ['Find logical bugs', 'Enforce style/standards', 'Compile code', 'Run tests'], 
+            correct: 1, 
+            exp: 'A linter analyzes source code to flag stylistic errors, non-idiomatic patterns, and suspicious constructs. In a bank, consistency reduces risk by ensuring everyone\'s code follows the same standard.', 
+            yt: 'What is a linter and why use it',
+            resources: [{ label: 'ESLint Core', url: 'https://eslint.org/docs/latest/use/core-concepts/' }, { label: 'Google Java Style', url: 'https://google.github.io/styleguide/javaguide.html' }]
+        },
+        { 
+            id: 'q2', theme: 'Testing', q: 'What is the "Arrange" phase in AAA unit testing?', 
+            opts: ['Execute the code', 'Check the results', 'Setup inputs and mocks', 'Refactor'], 
+            correct: 2, 
+            exp: 'Arrange involves setting up the environment, data, and dependencies required for the test to run in isolation. It is the setup phase of the test.', 
+            yt: 'Arrange Act Assert pattern',
+            resources: [{ label: 'JUnit 5 Guide', url: 'https://junit.org/junit5/docs/current/user-guide/' }]
+        },
+        { 
+            id: 'q3', theme: 'Java', q: 'Why use the "Optional" class in Java?', 
+            opts: ['Higher speed', 'Handle missing values explicitly', 'Lower memory', 'Auto null conversion'], 
+            correct: 1, 
+            exp: 'Optional is a container object used to represent the possible absence of a value. It prevents NullPointerExceptions by forcing explicit checks.', 
+            yt: 'Java Optional explained',
+            resources: [{ label: 'Modern Java Optional', url: 'https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html' }]
+        },
+        { 
+            id: 'q4', theme: 'SQL', q: 'What is the difference between HAVING and WHERE in SQL?', 
+            opts: ['No difference', 'HAVING filters after grouping', 'WHERE filters after grouping', 'HAVING is for joins'], 
+            correct: 1, 
+            exp: 'The WHERE clause filters individual records before any grouping occurs. The HAVING clause filters the resulting groups after GROUP BY is applied.', 
+            yt: 'SQL HAVING vs WHERE explained',
+            resources: [{ label: 'SQLBolt: Filtering Aggregates', url: 'https://sqlbolt.com/lesson/select_queries_with_aggregates' }]
+        },
+        { 
+            id: 'q5', theme: 'SQL', q: 'What does ACID stand for in database transactions?', 
+            opts: ['A Cloud In Data', 'Atomicity, Consistency, Isolation, Durability', 'Access, Control, Index, Data', 'Always Carry Internal Data'], 
+            correct: 1, 
+            exp: 'ACID ensures reliability. Atomicity is "all or nothing"; Consistency keeps the DB valid; Isolation prevents interference; and Durability guarantees data survives crashes.', 
+            yt: 'ACID properties explained',
+            resources: [{ label: 'Database Transaction Isolation', url: 'https://en.wikipedia.org/wiki/Isolation_(database_systems)' }]
+        }
+    ];
+
+    const flashcardPool = [
+        { id: 'f1', cat: 'Java', q: 'JVM vs JRE vs JDK', a: 'JDK > JRE > JVM', d: 'JDK includes tools to develop; JRE includes libraries to run; JVM is the engine that executes bytecode.' },
+        { id: 'f2', cat: 'Java', q: 'Encapsulation', a: 'Data Hiding', d: 'Bundling data and methods into a single unit (class) and restricting access. Essential for system integrity.' },
+        { id: 'f3', cat: 'SQL', q: 'ACID', a: 'Atomicity, Consistency, Isolation, Durability', d: 'Bedrock properties that guarantee database transactions are processed reliably.' },
+        { id: 'f4', cat: 'DSA', q: 'Big O: O(1)', a: 'Constant Time', d: 'Execution time remains the same regardless of input size.' }
+    ];
+
+    const coursesData = [
+        { id: 'c1', title: 'Learn JavaScript', hours: 10, url: 'https://scrimba.com/learn-javascript-c0v', rank: 1, desc: 'The absolute foundation. You cannot be a web developer without deep JS knowledge.' },
+        { id: 'c2', title: 'Command Line Basics', hours: 2, url: 'https://scrimba.com/command-line-basics-c08b87ogl0', rank: 2, desc: 'The professional standard. Real work happens in the terminal.' },
+        { id: 'c3', title: 'Learn TypeScript', hours: 5, url: 'https://scrimba.com/learn-typescript-c03c', rank: 3, desc: 'Industry standard for enterprise. Banks love type safety.' },
+        { id: 'c4', title: 'Learn React', hours: 15, url: 'https://scrimba.com/learn-react-c0e', rank: 4, desc: 'The dominant UI library. High market demand.' },
+        { id: 'c5', title: 'Learn Next.js', hours: 5, url: 'https://scrimba.com/learn-nextjs-c02moisq6a', rank: 5, desc: 'Modern web architecture. Combines React with server-side power.' },
+        { id: 'c6', title: 'Learn Node.js', hours: 4.5, url: 'https://scrimba.com/learn-nodejs-c00ho9qqh6', rank: 6, desc: 'Understand the JS runtime beyond the browser.' },
+        { id: 'c7', title: 'Intro to Vite', hours: 1, url: 'https://scrimba.com/intro-to-vite-c03p6pbbdq', rank: 7, desc: 'Modern tooling. Lightning fast development experience.' },
+        { id: 'c8', title: 'Intro to Supabase', hours: 5, url: 'https://scrimba.com/intro-to-supabase-c0abltfqed', rank: 8, desc: 'Rapid prototyping. Database, Auth, and Storage in one.' }
+    ];
+
+    const drillsData = [
+        { id: 'd1', title: 'Variables', prompt: 'Declare a String "Alice", an int primitive 30, and an Integer wrapper type 30. Return them as an Object array.', answer: 'String name = "Alice";\nint age = 30;\nInteger wrapped = 30;\nreturn new Object[]{name, age, wrapped};' },
+        { id: 'd2', title: 'Arrays & ArrayLists', prompt: 'Declare a fixed int array of 3 elements: 1, 2, 3, then change the last element to 4. Declare an ArrayList of Strings and add "hello", "goodbye". Return both as an Object array.', answer: 'int[] arr = {1, 2, 3};\narr[2] = 4;\nArrayList<String> list = new ArrayList<>();\nlist.add("hello");\nlist.add("goodbye");\nreturn new Object[]{arr, list};' },
+        { id: 'd3', title: 'HashMaps', prompt: 'Create a HashMap key type String, value type Integer. Put "a" -> 1 and "b" -> 2. If key "c" doesn\'t exist, print "key doesn\'t exist". Remove "b" and return the map.', answer: 'Map<String, Integer> m = new HashMap<>();\nm.put("a", 1);\nm.put("b", 2);\nif (!m.containsKey("c")) {\n    System.out.println("key doesn\'t exist");\n}\nm.remove("b");\nreturn m;' },
+        { id: 'd11', title: 'Optional: Basic Usage', prompt: 'Create an Optional of "Hello", and return the value or "Default" if empty.', answer: 'Optional<String> opt = Optional.of("Hello");\nreturn opt.orElse("Default");' },
+        { id: 'd13', title: 'Streams: Filter & Collect', prompt: 'Given a List<Integer> "list", filter those > 5 and collect into a new List.', answer: 'return list.stream().filter(n -> n > 5).collect(Collectors.toList());' }
+    ];
+
+    const projectsData = [
+        { id: 'p1', title: 'CityHopper ERD', url: 'https://docs.google.com/document/d/1os-xXAxgLBOda1dj7ft0OGNTzDpJ9ecBH2CWTiSLtho/edit?tab=t.0', desc: 'Design the relational schema for the travel tracking app.' },
+        { id: 'p2', title: 'AutoGuessr ERD', url: 'https://docs.google.com/document/d/1QC5vhehT-J_8FIGX6zjwC6BWMmJbdY-7EBS8RjetSuQ/edit?tab=t.0', desc: 'Map out the data flow for the location guessing game.' }
+    ];
+
+    const schedule = {
+        1: { lc: ['lc1'], revisions: [], fcTheme: 'Java Fundamentals' },
+        2: { lc: ['lc2'], revisions: ['lc1'], fcTheme: 'Relational DBs' },
+        3: { lc: ['lc3'], revisions: ['lc2'], fcTheme: 'Basic DSA' },
+        4: { lc: ['lc4'], revisions: ['lc1', 'lc3'], fcTheme: 'Testing & Quality' },
+        5: { lc: ['lc10', 'lc11'], revisions: ['lc4'], fcTheme: 'Heap Basics' },
+        6: { lc: ['lc12', 'lc13'], revisions: ['lc10'], fcTheme: 'Advanced Heaps' },
+        7: { lc: ['lc14'], revisions: ['lc11', 'lc13'], fcTheme: 'Review' }
+    };
+
+    // --- APP STATE ---
+    let state = JSON.parse(localStorage.getItem('prepStateV6') || JSON.stringify({
+        completed: {}, viewingDay: 1, quiz: {}, fc: {}, 
+        drills: { history: [], best: 0, todayScore: 0, canRecordToday: true },
+        courses: { 'c1': 1 },
+        projects: {}
+    }));
+
+    function save() { localStorage.setItem('prepStateV6', JSON.stringify(state)); updateGlobalProgress(); }
+
+    function switchTab(id, el) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById(id + '-tab').classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+        document.getElementById('page-title').innerText = el.innerText.split(' ').slice(1).join(' ');
+        if (id === 'mission') renderMission();
+        if (id === 'leetcode') renderLC();
+        if (id === 'quiz') setupQuiz();
+        if (id === 'flashcards') renderFC();
+        if (id === 'drills') renderDrillDashboard();
+        if (id === 'courses') renderCourses();
+    }
+
+    function changeDay(delta) {
+        state.viewingDay = Math.max(1, Math.min(9, state.viewingDay + delta));
+        renderMission();
+        save();
+    }
+
+    // --- MISSION ---
+    function renderMission() {
+        const day = state.viewingDay;
+        const data = schedule[day] || { lc:[], revisions:[], fcTheme: 'Review' };
+        document.getElementById('display-day').innerText = `Day ${day}`;
+        const list = document.getElementById('mission-list');
+        let html = '';
+        html += `<div class="task-item"><div><span class="tag tag-java">Theme</span> <strong>Flashcards: ${data.fcTheme}</strong></div><button class="btn btn-outline" onclick="switchTab('flashcards', document.querySelectorAll('.nav-item')[5])">Start</button></div>`;
+        data.lc.forEach(id => {
+            const p = leetcodeData.find(x => x.id === id);
+            const done = state.completed[id] === 'done';
+            html += `<div class="task-item"><div><span class="tag tag-new">New</span> <strong>LeetCode: ${p.title}</strong></div><button class="btn ${done?'btn-success':'btn-primary'}" onclick="switchTab('leetcode', document.querySelectorAll('.nav-item')[1])">${done?'Done':'Start'}</button></div>`;
+        });
+        const nextCourse = coursesData.sort((a,b) => a.rank - b.rank).find(c => (state.courses[c.id] || 0) < c.hours);
+        if (nextCourse) {
+            const prog = state.courses[nextCourse.id] || 0;
+            html += `<div class="task-item" style="border-left: 4px solid var(--accent);"><div><span class="tag tag-primary">GUIDED</span> <strong>Next Course: ${nextCourse.title}</strong> (${prog}h/${nextCourse.hours}h)</div><button class="btn btn-primary" onclick="switchTab('courses', document.querySelectorAll('.nav-item')[3])">Continue</button></div>`;
+        }
+        projectsData.forEach(p => {
+            const done = state.projects[p.id] === 'done';
+            html += `<div class="task-item" style="border-left: 4px solid var(--bank-green);"><div><span class="tag tag-sql">ERD</span> <strong>Project: ${p.title}</strong></div><div style="display:flex; gap:10px;"><a href="${p.url}" target="_blank" class="btn btn-outline btn-small">Open Doc</a><button class="btn ${done?'btn-success':'btn-outline'} btn-small" onclick="toggleProject('${p.id}')">${done?'Complete':'Mark Done'}</button></div></div>`;
+        });
+        list.innerHTML = html;
+        updateDailyStats();
+    }
+
+    function updateDailyStats() {
+        const day = state.viewingDay;
+        const data = schedule[day] || { lc:[], revisions:[] };
+        const lcDone = [...data.lc, ...data.revisions].filter(id => state.completed[id] === 'done').length;
+        const lcTotal = data.lc.length + data.revisions.length;
+        document.getElementById('stat-lc').innerText = `${lcDone}/${lcTotal}`;
+        document.getElementById('stat-lc-fill').style.width = lcTotal ? `${(lcDone/lcTotal)*100}%` : '0%';
+        const quizDone = state.quiz[TODAY_STR] ? state.quiz[TODAY_STR].length : 0;
+        document.getElementById('stat-quiz').innerText = `${quizDone}/5`;
+        document.getElementById('stat-quiz-fill').style.width = `${(quizDone/5)*100}%`;
+        document.getElementById('stat-fc').innerText = `${Object.keys(state.fc).length}/100`;
+        document.getElementById('stat-fc-fill').style.width = `${Object.keys(state.fc).length}%`;
+        document.getElementById('stat-drill').innerText = state.drills.todayScore || 0;
+        document.getElementById('stat-drill-fill').style.width = `${Math.min(100, (state.drills.todayScore || 0) * 10)}%`;
+        const revList = document.getElementById('review-list');
+        const struggled = Object.keys(state.completed).filter(id => state.completed[id] === 'struggle');
+        revList.innerHTML = struggled.length ? '' : 'No items flagged.';
+        struggled.forEach(id => {
+            const p = leetcodeData.find(x => x.id === id);
+            if(p) revList.innerHTML += `<div style="margin-bottom:8px;">${p.title} <span style="float:right; cursor:pointer;" onclick="toggleLC('${id}')">✓</span></div>`;
+        });
+    }
+
+    // --- LEETCODE ---
+    function renderLC() {
+        const container = document.getElementById('lc-container');
+        container.innerHTML = '';
+        leetcodeData.forEach(p => {
+            const isToday = (schedule[state.viewingDay] || {lc:[], revisions:[]}).lc.includes(p.id) || (schedule[state.viewingDay] || {lc:[], revisions:[]}).revisions.includes(p.id);
+            if (!isToday) return;
+            const div = document.createElement('div');
+            div.className = 'lc-problem-card';
+            div.innerHTML = `<div style="display:flex; justify-content:space-between"><h3>${p.title}</h3><div><button class="btn btn-outline" onclick="markStruggle('${p.id}')">Struggle</button><button class="btn ${state.completed[p.id]==='done'?'btn-success':'btn-primary'}" onclick="toggleLC('${p.id}')">${state.completed[p.id]==='done'?'Done':'Mark Done'}</button></div></div><p>${p.desc}</p><div class="lc-strategy"><strong>Java Strategy:</strong><p>${p.java}</p><a href="${p.link}" target="_blank">Open Problem →</a></div>`;
+            container.appendChild(div);
+        });
+    }
+    function toggleLC(id) { state.completed[id] = (state.completed[id] === 'done') ? null : 'done'; save(); renderLC(); renderMission(); }
+    function markStruggle(id) { state.completed[id] = 'struggle'; save(); renderLC(); renderMission(); }
+
+    // --- COURSES ---
+    function renderCourses() {
+        const container = document.getElementById('course-list');
+        container.innerHTML = '';
+        coursesData.sort((a,b) => a.rank - b.rank).forEach(c => {
+            const progress = state.courses[c.id] || 0;
+            const pct = Math.min(100, Math.round((progress / c.hours) * 100));
+            const card = document.createElement('div');
+            card.className = 'lc-problem-card';
+            card.innerHTML = `<div style="display:flex; justify-content:space-between"><div><h3>${c.title} (${c.hours}h)</h3><p>${c.desc}</p></div><a href="${c.url}" target="_blank" class="btn btn-primary">Open Scrimba</a></div><div style="margin-top:15px;"><div style="display:flex; justify-content:space-between; font-size:0.8rem;"><span>Progress: ${progress}h</span><span>${pct}%</span></div><div class="progress-mini"><div class="progress-mini-fill" style="width:${pct}%"></div></div><div style="display:flex; gap:10px; margin-top:10px;"><button class="btn btn-outline btn-small" onclick="updateCourse('${c.id}', -0.5)">-0.5h</button><button class="btn btn-outline btn-small" onclick="updateCourse('${c.id}', 0.5)">+0.5h</button><button class="btn btn-success" onclick="updateCourse('${c.id}', ${c.hours})">Done</button></div></div>`;
+            container.appendChild(card);
+        });
+    }
+    function updateCourse(id, val) { if (val > 1) state.courses[id] = val; else state.courses[id] = Math.max(0, (state.courses[id] || 0) + val); save(); renderCourses(); renderMission(); }
+    function toggleProject(id) { state.projects[id] = (state.projects[id] === 'done') ? null : 'done'; save(); renderMission(); }
+
+    // --- DRILLS ---
+    let drillSession = { streak: 0, currentId: null };
+    function renderDrillDashboard() { document.getElementById('drill-intro').style.display = 'block'; document.getElementById('drill-container').style.display = 'none'; document.getElementById('drill-today-best').innerText = state.drills.todayScore || 0; document.getElementById('drill-all-time').innerText = state.drills.best; }
+    function startDrill() { drillSession.streak = 0; document.getElementById('drill-intro').style.display = 'none'; document.getElementById('drill-container').style.display = 'block'; nextDrill(); }
+    function nextDrill() { const r = drillsData[Math.floor(Math.random() * drillsData.length)]; drillSession.currentId = r.id; document.getElementById('drill-title').innerText = r.title; document.getElementById('drill-prompt').innerText = r.prompt; document.getElementById('drill-input').value = ''; document.getElementById('drill-input').disabled = false; document.getElementById('drill-feedback').innerHTML = ''; document.getElementById('drill-meta').innerText = `STREAK: ${drillSession.streak}`; document.getElementById('drill-submit').style.display = 'block'; document.getElementById('drill-next').style.display = 'none'; }
+    function submitDrill() { 
+        const drill = drillsData.find(d => d.id === drillSession.currentId);
+        const rawInput = document.getElementById('drill-input').value;
+        const inputNormalized = rawInput.trim().replace(/\s+/g, "");
+        const ansNormalized = drill.answer.trim().replace(/\s+/g, "");
+        if (inputNormalized === ansNormalized) {
+            drillSession.streak++;
+            document.getElementById('drill-feedback').innerHTML = '<p style="color:var(--bank-green); font-weight:800; margin:10px 0;">SYNTAX ACCEPTED! 🚀</p>';
+            document.getElementById('drill-submit').style.display = 'none';
+            document.getElementById('drill-next').style.display = 'block';
+            if (state.drills.canRecordToday && drillSession.streak > (state.drills.todayScore || 0)) state.drills.todayScore = drillSession.streak;
+            if (drillSession.streak > state.drills.best) state.drills.best = drillSession.streak;
+            save();
+        } else {
+            state.drills.canRecordToday = false; save();
+            document.getElementById('drill-feedback').innerHTML = `<div style="margin-top:15px; border:2px solid var(--bank-red); border-radius:12px; padding:20px; background:#1e1b1b;"><p style="color:var(--bank-red); font-weight:800; margin-top:0;">SYNTAX MISMATCH</p><code style="color:var(--bank-green); font-size:0.9rem; display:block; background:#0f172a; padding:10px; border-radius:6px; white-space:pre-wrap;">${drill.answer}</code></div>`;
+            document.getElementById('drill-submit').style.display = 'none';
+            document.getElementById('drill-restart').style.display = 'block';
+        }
+    }
+
+    // --- QUIZ & FC ---
+    let currentQuizPool = [];
+    let currentQIdx = 0;
+    function setupQuiz() { 
+        const s = document.getElementById('theme-selector'); s.innerHTML = ''; 
+        ['All', 'Java', 'SQL', 'Testing', 'Software Quality'].forEach(t => { 
+            const b = document.createElement('button'); b.className = 'btn btn-outline'; b.innerText = t; 
+            b.onclick = () => { 
+                currentQuizPool = quizPool.filter(q => t==='All' || q.theme === t); 
+                if (t === 'All') currentQuizPool = [...currentQuizPool].sort(() => 0.5 - Math.random()).slice(0, 5);
+                currentQIdx = 0; document.getElementById('quiz-intro').style.display = 'none'; document.getElementById('quiz-container').style.display = 'block'; showQuestion(); 
+            }; s.appendChild(b); 
+        }); 
+        document.getElementById('quiz-intro').style.display = 'block'; document.getElementById('quiz-container').style.display = 'none';
+    }
+    function showQuestion() { 
+        const q = currentQuizPool[currentQIdx]; 
+        document.getElementById('quiz-meta').innerText = `${q.theme} | Q ${currentQIdx + 1}/${currentQuizPool.length}`;
+        document.getElementById('quiz-question').innerText = q.q; 
+        const o = document.getElementById('quiz-options'); o.innerHTML = ''; 
+        q.opts.forEach((opt, i) => { 
+            const b = document.createElement('button'); b.className = 'quiz-option'; b.innerText = opt; 
+            b.onclick = () => { 
+                const c = i === q.correct; document.querySelectorAll('.quiz-option').forEach((btn, idx) => { btn.disabled = true; if(idx === q.correct) btn.classList.add('correct'); else if(idx === i) btn.classList.add('incorrect'); }); 
+                let resHtml = (q.resources || []).map(r => `<a href="${r.url}" target="_blank" style="color:var(--quiz-blue); font-weight:600; text-decoration:none; display:flex; align-items:center; gap:5px; margin-top:10px;">📖 ${r.label}</a>`).join('');
+                document.getElementById('quiz-feedback').innerHTML = `<div class="exp-box"><div style="display:flex; justify-content:space-between"><strong>${c?'MASTERED':'WRONG'}</strong><a href="https://www.youtube.com/results?search_query=${encodeURIComponent(q.yt || q.q)}" target="_blank" class="btn btn-outline" style="font-size:0.7rem">📺 YouTube</a></div><p style="margin-top:15px;">${q.exp}</p>${resHtml}</div>`; 
+                document.getElementById('quiz-next').style.display = 'block'; 
+                if(!state.quiz[TODAY_STR]) state.quiz[TODAY_STR] = []; if(!state.quiz[TODAY_STR].includes(q.id)) state.quiz[TODAY_STR].push(q.id); 
+                save(); 
+            }; o.appendChild(b); 
+        }); 
+        document.getElementById('quiz-feedback').innerHTML = ''; document.getElementById('quiz-next').style.display = 'none'; 
+    }
+    function nextQuestion() { currentQIdx++; if(currentQIdx < currentQuizPool.length) showQuestion(); else setupQuiz(); }
+    
+    let fcIdx = 0;
+    function renderFC() { const c = flashcardPool[fcIdx % flashcardPool.length]; document.getElementById('fc-q').innerText = c.q; document.getElementById('fc-a').innerText = c.a; document.getElementById('fc-d').innerText = c.d; document.getElementById('fc-container').classList.remove('flipped'); }
+    function flipCard() { document.getElementById('fc-container').classList.toggle('flipped'); }
+    function scoreFC(c) { state.fc[flashcardPool[fcIdx % flashcardPool.length].id] = c; save(); fcIdx++; renderFC(); }
+    let fcStruggleMode = false; function toggleFCStruggle() { fcStruggleMode = !fcStruggleMode; fcIdx = 0; renderFC(); }
+
+    function updateGlobalProgress() {
+        const total = leetcodeData.length + 100 + quizPool.length + coursesData.reduce((acc, c) => acc + c.hours, 0) + (projectsData.length * 2);
+        const done = Object.values(state.completed).filter(v => v === 'done').length + Object.keys(state.fc).length + Object.values(state.quiz).reduce((a,b)=>a+b.length,0) + Object.values(state.courses).reduce((a,b)=>a+b,0) + (Object.values(state.projects).filter(v => v === 'done').length * 2);
+        const pct = Math.round((done / total) * 100);
+        document.getElementById('global-progress-val').innerText = `${pct}%`;
+        document.getElementById('global-progress-fill').style.width = `${pct}%`;
+    }
+
+    function init() {
+        document.getElementById('current-date').innerText = TODAY.toDateString();
+        const diff = Math.ceil((SPRINT_START_DATE - TODAY) / 86400000);
+        document.getElementById('countdown-timer').innerText = `${diff} DAYS TO SPRINT`;
+        if (localStorage.getItem('lastDrillDate') !== TODAY_STR) { state.drills.canRecordToday = true; state.drills.todayScore = 0; localStorage.setItem('lastDrillDate', TODAY_STR); save(); }
+        document.getElementById('drill-input').addEventListener('keydown', function(e) { if (e.key === 'Tab') { e.preventDefault(); const s = this.selectionStart; const end = this.selectionEnd; this.value = this.value.substring(0, s) + "    " + this.value.substring(end); this.selectionStart = this.selectionEnd = s + 4; } });
+        renderMission();
+    }
+    init();
+</script>
+</body>
+</html>
