@@ -171,11 +171,11 @@ const ChartTooltipContent = React.forwardRef<
         {!nestLabel ? tooltipLabel : null}
         <div className="grid gap-1.5">
           {(payload as any[])
-            .filter((item: any) => item.type !== "none")
+            .filter((item: any) => item && item.type !== "none")
             .map((item: any, index: any) => {
               const key = `${nameKey || item.name || item.dataKey || "value"}`
               const itemConfig = getPayloadConfigFromPayload(config, item, key)
-              const indicatorColor = color || item.payload.fill || item.color
+              const indicatorColor = color || (item.payload && item.payload.fill) || item.color
 
               return (
                 <div

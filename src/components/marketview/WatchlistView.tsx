@@ -79,7 +79,7 @@ export function WatchlistView({
       queryFn: async () => {
         if (symbols.length === 0) return { stocks: [], lastUpdated: "" };
         const res = await fetch(
-          `/api/market/quotes?symbols=${encodeURIComponent(symbolsKey)}`
+          `/api/marketview/market/quotes?symbols=${encodeURIComponent(symbolsKey)}`
         );
         if (!res.ok) throw new Error("Failed to fetch quotes");
         return res.json() as Promise<QuotesResponse>;

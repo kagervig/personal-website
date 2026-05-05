@@ -43,7 +43,7 @@ const SEVERITY_COLORS = {
 };
 
 export function SentimentBanner({ overallSentiment, alerts, lastUpdated }: Props) {
-  const cfg = SENTIMENT_CONFIG[overallSentiment];
+  const cfg = SENTIMENT_CONFIG[overallSentiment] || SENTIMENT_CONFIG.neutral;
   const criticalAlerts = alerts.filter((a) => a.severity === "critical");
   const otherAlerts = alerts.filter((a) => a.severity !== "critical");
 

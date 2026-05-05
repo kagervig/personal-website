@@ -46,7 +46,7 @@ interface Props {
 }
 
 export function TickerCard({ ticker, onClick }: Props) {
-  const alertCfg = ALERT_CONFIG[ticker.alertLevel];
+  const alertCfg = ALERT_CONFIG[ticker.alertLevel] || ALERT_CONFIG.none;
   const isUp = ticker.changePercent >= 0;
   const isDown = ticker.changePercent < 0;
 
