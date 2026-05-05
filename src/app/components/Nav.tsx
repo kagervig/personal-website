@@ -3,7 +3,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, Download, Sun, Moon } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { cn } from '@/app/lib/utils';
+import { cn } from '@/lib/utils';
 import { NAV_LINKS } from '@/app/data';
 
 interface NavProps {
