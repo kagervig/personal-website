@@ -1,4 +1,4 @@
-import { useToast } from "@/hooks/use-toast"
+import { useToast } from "@/lib/history-timeline/use-toast"
 import {
   Toast,
   ToastClose,
