@@ -199,7 +199,8 @@ export const romeData: TimelineData = {
       year: -753,
       category: 'politics',
       description: "Traditional date marking the beginning of the Roman timeline.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Founding-of-rome'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Founding-of-rome',
+      importance: 3
     },
     {
       id: 'republic-founded',
@@ -207,55 +208,62 @@ export const romeData: TimelineData = {
       year: -509,
       category: 'politics',
       description: "The last king, Tarquin the Proud, was overthrown. Rome established a Republic led by two annually elected Consuls.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Overthrow_of_the_Roman_monarchy'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Overthrow_of_the_Roman_monarchy',
+      importance: 3
     },
     {
       id: 'gallic-sack',
       name: 'Sack of Rome by Gauls',
       year: -390,
       category: 'war',
-      description: "A traumatising defeat at the hands of Brennus and the Gauls that led to the rebuilding of Rome’s defences.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_the_Allia'
+      description: "A traumatising defeat at the hands of Brennus and the Gauls.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_the_Allia',
+      importance: 2
     },
     {
       id: 'punic-wars',
       name: 'The Punic Wars',
       year: -264,
       category: 'war',
-      description: "Three massive wars against Carthage. Rome gained control of the Western Mediterranean and destroyed its greatest rival.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Punic_Wars'
+      description: "Three massive wars against Carthage. Rome gained control of the Western Mediterranean.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Punic_Wars',
+      importance: 3
     },
     {
       id: 'gracchan-reforms',
       name: 'Gracchan Reforms',
       year: -133,
       category: 'politics',
-      description: "Violent political strife over land redistribution, marking the start of internal decay and the end of political consensus in the Republic.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Gracchi_brothers'
+      description: "Violent political strife over land redistribution.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Gracchi_brothers',
+      importance: 2
     },
     {
       id: 'sulla-dictatorship',
       name: 'Sulla’s Dictatorship',
       year: -82,
       category: 'politics',
-      description: "The first time a Roman general marched on Rome and seized total power, using proscriptions to eliminate his enemies.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Sulla'
+      description: "The first time a Roman general marched on Rome and seized total power.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Sulla',
+      importance: 2
     },
     {
       id: 'first-triumvirate',
       name: 'The First Triumvirate',
       year: -60,
       category: 'politics',
-      description: "An informal political alliance between Julius Caesar, Pompey the Great, and Marcus Crassus to bypass the Senate.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/First_Triumvirate'
+      description: "An informal political alliance between Caesar, Pompey, and Crassus.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/First_Triumvirate',
+      importance: 3
     },
     {
       id: 'caesar-assassinated',
       name: 'Julius Caesar Assassinated',
       year: -44,
       category: 'politics',
-      description: "The death of Julius Caesar at the hands of senators led to the final civil wars of the Republic.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar'
+      description: "The death of Julius Caesar led to the final civil wars of the Republic.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Assassination_of_Julius_Caesar',
+      importance: 3
     },
     {
       id: 'battle-of-actium',
@@ -263,7 +271,8 @@ export const romeData: TimelineData = {
       year: -31,
       category: 'war',
       description: "Octavian defeated Mark Antony and Cleopatra, becoming sole ruler of the Roman world.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Actium'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Actium',
+      importance: 3
     },
     {
       id: 'vesuvius-eruption',
@@ -271,7 +280,8 @@ export const romeData: TimelineData = {
       year: 79,
       category: 'disaster',
       description: "Mount Vesuvius erupted, burying Pompeii and Herculaneum.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Eruption_of_Mount_Vesuvius_in_79_AD'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Eruption_of_Mount_Vesuvius_in_79_AD',
+      importance: 2
     },
     {
       id: 'edict-of-milan',
@@ -279,7 +289,8 @@ export const romeData: TimelineData = {
       year: 313,
       category: 'legislation',
       description: "Constantine establishing religious tolerance.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Edict_of_Milan'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Edict_of_Milan',
+      importance: 2
     },
     {
       id: 'sack-of-rome',
@@ -287,7 +298,8 @@ export const romeData: TimelineData = {
       year: 410,
       category: 'war',
       description: "The Visigoths breached Rome's walls for the first time in 800 years.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Sack_of_Rome_(410)'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Sack_of_Rome_(410)',
+      importance: 3
     },
     {
       id: 'fall-of-constantinople',
@@ -295,7 +307,8 @@ export const romeData: TimelineData = {
       year: 1453,
       category: 'war',
       description: "The end of the Roman Empire after over 2,000 years.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Fall_of_Constantinople'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Fall_of_Constantinople',
+      importance: 3
     }
   ],
   constructions: [
@@ -304,64 +317,72 @@ export const romeData: TimelineData = {
       name: 'Roman Forum Expansion',
       year: -700,
       category: 'monument',
-      description: "During the Republic, the Forum was transformed from a marketplace into the political heart of the world.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Roman_Forum'
+      description: "During the Republic, the Forum became the political heart of the world.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Roman_Forum',
+      importance: 3
     },
     {
       id: 'servian-wall-rebuilt',
       name: 'Servian Wall',
       year: -378,
       category: 'fort',
-      description: "Rebuilt after the Gallic Sack using massive Tufa blocks; it encircled the Seven Hills of Rome.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Servian_Wall'
+      description: "Rebuilt after the Gallic Sack using massive Tufa blocks.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Servian_Wall',
+      importance: 2
     },
     {
       id: 'via-appia',
       name: 'Via Appia',
       year: -312,
       category: 'road',
-      description: "The first and most famous long-distance Roman road, engineered for military rapid-response.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Appian_Way'
+      description: "The first and most famous long-distance Roman road.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Appian_Way',
+      importance: 3
     },
     {
       id: 'aqua-appia',
       name: 'Aqua Appia',
       year: -312,
       category: 'landmark',
-      description: "Rome’s first aqueduct, mostly underground to protect it during wartime, ensuring a consistent water supply.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Aqua_Appia'
+      description: "Rome’s first aqueduct, mostly underground to protect it during wartime.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Aqua_Appia',
+      importance: 2
     },
     {
       id: 'pons-aemilius',
       name: 'Pons Aemilius',
       year: -142,
       category: 'bridge',
-      description: "The first stone bridge across the Tiber River, a major advancement over earlier timber structures.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pons_Aemilius'
+      description: "The first stone bridge across the Tiber River.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pons_Aemilius',
+      importance: 1
     },
     {
       id: 'temple-portunus',
       name: 'Temple of Portunus',
       year: -100,
       category: 'temple',
-      description: "An incredibly well-preserved temple near the Tiber, showing the transition from Etruscan to Ionic Greek style.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Portunus'
+      description: "An incredibly well-preserved temple showing transition to Ionic style.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Portunus',
+      importance: 1
     },
     {
       id: 'theatre-pompey',
       name: 'Theatre of Pompey',
       year: -55,
       category: 'monument',
-      description: "The first permanent stone theatre in Rome. Pompey built a temple at the top to bypass laws against permanent theatres.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Theatre_of_Pompey'
+      description: "The first permanent stone theatre in Rome.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Theatre_of_Pompey',
+      importance: 2
     },
     {
       id: 'forum-caesar',
       name: 'Forum of Caesar',
       year: -46,
       category: 'monument',
-      description: "The first of the 'Imperial Fora,' built by Julius Caesar to relieve overcrowding in the old Forum.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Forum_of_Caesar'
+      description: "The first of the 'Imperial Fora,' built by Julius Caesar.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Forum_of_Caesar',
+      importance: 2
     },
     {
       id: 'colosseum',
@@ -369,7 +390,8 @@ export const romeData: TimelineData = {
       year: 80,
       category: 'monument',
       description: "The Flavian Amphitheatre, the largest ancient amphitheatre ever built.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Colosseum'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Colosseum',
+      importance: 3
     },
     {
       id: 'pantheon',
@@ -377,7 +399,8 @@ export const romeData: TimelineData = {
       year: 125,
       category: 'temple',
       description: "Rebuilt by Hadrian with the world's largest unreinforced concrete dome.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pantheon,_Rome'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pantheon,_Rome',
+      importance: 3
     },
     {
       id: 'hagia-sophia',
@@ -385,7 +408,8 @@ export const romeData: TimelineData = {
       year: 537,
       category: 'church',
       description: "The epitome of Byzantine architecture, built by Justinian I.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Hagia_Sophia'
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Hagia_Sophia',
+      importance: 3
     }
   ],
   population: [

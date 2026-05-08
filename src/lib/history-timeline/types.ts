@@ -32,6 +32,7 @@ export interface Event {
   description: string;
   wikipediaUrl: string;
   imageUrl?: string;
+  importance?: number; // 1 (low) to 3 (high)
 }
 
 export interface Construction {
@@ -42,6 +43,7 @@ export interface Construction {
   description: string;
   wikipediaUrl: string;
   imageUrl?: string;
+  importance?: number; // 1 (low) to 3 (high)
 }
 
 export interface Population {

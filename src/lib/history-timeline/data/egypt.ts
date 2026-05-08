@@ -279,192 +279,216 @@ export const egyptData: TimelineData = {
       name: 'Unification of Upper & Lower Egypt',
       year: -3100,
       category: 'politics',
-      description: "Around 3100 BCE, King Narmer united the two kingdoms of Upper and Lower Egypt into a single state. This was one of the most important moments in history — the birth of one of the world's first great civilisations. The pharaoh wore a double crown representing both kingdoms.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Unification_of_Egypt'
+      description: "Around 3100 BCE, King Narmer united the two kingdoms of Upper and Lower Egypt into a single state.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Unification_of_Egypt',
+      importance: 3
     },
     {
       id: 'great-pyramid-completed',
       name: 'Great Pyramid Completed',
       year: -2560,
       category: 'culture',
-      description: "The Great Pyramid of Khufu at Giza was completed around 2560 BCE. Built by tens of thousands of skilled workers — not slaves as was once thought — it used over 2 million stone blocks and stood 146 metres tall. It remained the world's tallest structure for nearly 4,000 years.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza'
+      description: "The Great Pyramid of Khufu at Giza was completed around 2560 BCE.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza',
+      importance: 3
     },
     {
       id: 'old-kingdom-collapse',
       name: 'Collapse of the Old Kingdom',
       year: -2181,
       category: 'disaster',
-      description: "The Old Kingdom collapsed around 2181 BCE due to a combination of drought, famine, and weak central government. Ancient texts describe chaos and suffering: 'The land is completely perished... the sun is covered and does not shine.' It was a catastrophic end to Egypt's first golden age.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/First_Intermediate_Period_of_Egypt'
+      description: "The Old Kingdom collapsed around 2181 BCE due to drought and weak government.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/First_Intermediate_Period_of_Egypt',
+      importance: 2
     },
     {
       id: 'hyksos-invasion',
       name: 'Hyksos Invasion',
       year: -1650,
       category: 'war',
-      description: "The Hyksos, a people from the eastern Mediterranean, swept into northern Egypt with superior bronze weapons and horse-drawn chariots — technologies the Egyptians had never seen before. They established their own dynasty and ruled Lower Egypt for over a century before being expelled.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Hyksos'
+      description: "Foreign rulers called the Hyksos invaded and introduced chariots to Egypt.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Hyksos',
+      importance: 2
     },
     {
       id: 'amarna-revolution',
       name: 'Amarna Religious Revolution',
       year: -1350,
       category: 'religion',
-      description: "Pharaoh Akhenaten shocked Egypt by declaring that only the sun disc Aten should be worshipped, abolishing centuries of Egyptian religion. He built an entirely new capital city called Akhetaten (modern Amarna) and closed the temples of the old gods. After his death, everything was reversed and his name was erased from monuments.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Atenism'
+      description: "Pharaoh Akhenaten abolished the traditional gods in favour of the sun disc Aten.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Atenism',
+      importance: 2
     },
     {
       id: 'abu-simbel-begins',
       name: 'Abu Simbel Construction Begins',
       year: -1285,
       category: 'culture',
-      description: "Ramesses II ordered the construction of two massive temples cut directly into the rock face at Abu Simbel in Nubia. Four colossal statues of Ramesses himself, each 20 metres tall, guard the entrance. The temples were designed so that twice a year, sunlight illuminates the statues inside on Ramesses's birthday.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Abu_Simbel_temples'
+      description: "Ramesses II ordered the construction of two massive temples cut directly into the rock face.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Abu_Simbel_temples',
+      importance: 2
     },
     {
       id: 'battle-of-kadesh',
       name: 'Battle of Kadesh',
       year: -1274,
       category: 'war',
-      description: "The Battle of Kadesh between Ramesses II and the Hittite king Muwatalli II was one of the largest chariot battles in history, with thousands of warriors on each side. It ended in stalemate and led to the world's first known peace treaty. Both sides claimed victory!",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Kadesh'
+      description: "One of the largest chariot battles in history, ending in a famous peace treaty.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Kadesh',
+      importance: 2
     },
     {
       id: 'persian-conquest',
       name: 'Persian Conquest of Egypt',
       year: -525,
       category: 'war',
-      description: "The Persian king Cambyses II invaded and conquered Egypt in 525 BCE, defeating Pharaoh Psamtik III at the Battle of Pelusium. Egypt became a province of the vast Persian Empire. The Persians respected some Egyptian customs but their rule was often unpopular.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Achaemenid_Egypt'
+      description: "The Persian king Cambyses II invaded and conquered Egypt in 525 BCE.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Achaemenid_Egypt',
+      importance: 3
     },
     {
       id: 'alexander-conquers',
       name: 'Alexander the Great Conquers Egypt',
       year: -332,
       category: 'war',
-      description: "Alexander the Great arrived in Egypt in 332 BCE and was welcomed as a liberator after the unpopular Persian occupation. He was declared pharaoh and travelled to the oracle of Amun at Siwa, where he was supposedly told he was the son of a god. He founded the city of Alexandria before moving on to conquer Persia.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Alexander_the_Great'
+      description: "Alexander the Great arrived in Egypt and founded the city of Alexandria.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Alexander_the_Great',
+      importance: 3
     },
     {
       id: 'ptolemy-coronation',
       name: 'Coronation of Ptolemy I Soter',
       year: -305,
       category: 'politics',
-      description: "Ptolemy I, a general of Alexander, declared himself King of Egypt, founding a Greek-speaking dynasty that would rule for three centuries.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Ptolemy_I_Soter'
+      description: "Ptolemy I declared himself King of Egypt, founding a three-century dynasty.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Ptolemy_I_Soter',
+      importance: 2
     },
     {
       id: 'battle-raphia',
       name: 'Battle of Raphia',
       year: -217,
       category: 'war',
-      description: "Ptolemy IV defeated the Seleucids; this battle marked the first large-scale use of native Egyptian soldiers in a Hellenistic army.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Raphia'
+      description: "A major victory for Ptolemy IV against the Seleucids.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Raphia',
+      importance: 1
     },
     {
       id: 'rosetta-stone',
       name: 'Rosetta Stone Decreed',
       year: -196,
       category: 'politics',
-      description: "Ptolemy V issued the Memphis Decree, later used to decipher hieroglyphs. It contains the same decree in three scripts: Hieroglyphic, Demotic, and Greek.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Rosetta_Stone'
+      description: "A decree issued in three scripts that eventually allowed hieroglyphs to be decoded.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Rosetta_Stone',
+      importance: 3
     },
     {
       id: 'roman-protectorate',
       name: 'Roman Protectorate Status',
       year: -168,
       category: 'politics',
-      description: "Rome intervened to stop a Seleucid invasion; Egypt effectively became a client state of the Roman Republic.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Ptolemaic_Kingdom#Rome'
+      description: "Rome intervened in the Day of Eleusis to protect Egypt from the Seleucids.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Ptolemaic_Kingdom#Rome',
+      importance: 2
     },
     {
       id: 'battle-of-actium',
       name: 'Battle of Actium',
       year: -31,
       category: 'war',
-      description: "The naval Battle of Actium in 31 BCE was one of history's most decisive battles. Octavian's fleet defeated the combined forces of Mark Antony and Cleopatra VII. This battle ended Egypt's independence.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Actium'
+      description: "The naval battle that ended Egyptian independence.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Battle_of_Actium',
+      importance: 3
     },
     {
       id: 'fall-of-ptolemies',
       name: 'Fall of the Ptolemies',
       year: -30,
       category: 'politics',
-      description: "Following the suicides of Antony and Cleopatra, Octavian annexed Egypt. He established a unique administrative system where the province was governed by a prefect of equestrian rank, rather than a senator, to prevent rivals from seizing power.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Roman_Egypt'
+      description: "Following Cleopatra's death, Octavian annexed Egypt as a Roman province.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Roman_Egypt',
+      importance: 3
     },
     {
       id: 'breadbasket-rome',
       name: 'Breadbasket of Rome',
       year: 50,
       category: 'trade',
-      description: "Egypt’s most critical role was the production of grain. The 'Annona' (the grain dole) in Rome relied heavily on the Nile’s harvest; it is estimated that Egypt provided roughly one-third of the city's total grain supply.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Cura_Annonae'
+      description: "Egypt provided one-third of the total grain supply to the city of Rome.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Cura_Annonae',
+      importance: 2
     },
     {
       id: 'jewish-revolt',
       name: 'The Jewish Revolt',
       year: 115,
       category: 'war',
-      description: "A major uprising within the Jewish diaspora in Cyrene and Alexandria during Trajan's reign. The conflict resulted in massive destruction in Alexandria and a significant shift in the city’s demographic and cultural landscape.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Kitos_War'
+      description: "A major uprising within the Jewish diaspora in Alexandria.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Kitos_War',
+      importance: 1
     },
     {
       id: 'hadrian-visit',
       name: 'Visit of Hadrian',
       year: 130,
       category: 'exploration',
-      description: "Emperor Hadrian travelled extensively through Egypt. After his companion Antinous drowned in the Nile, Hadrian founded the city of Antinoöpolis in his memory, blending Greek and Egyptian architectural styles.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Antino%C3%B6polis'
+      description: "Emperor Hadrian travelled extensively and founded Antinoöpolis.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Antino%C3%B6polis',
+      importance: 2
     },
     {
       id: 'rise-christianity',
       name: 'Rise of Christianity',
       year: 180,
       category: 'religion',
-      description: "By the 2nd century, Alexandria became a primary centre of Christian scholarship. Egypt was the birthplace of Christian Monasticism, pioneered by figures like St. Anthony the Great in the eastern desert.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Coptic_Orthodox_Church'
+      description: "Alexandria became a primary centre of Christian scholarship and monasticism.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Coptic_Orthodox_Church',
+      importance: 2
     },
     {
       id: 'edict-caracalla',
       name: 'The Edict of Caracalla',
       year: 212,
       category: 'legislation',
-      description: "This decree granted Roman citizenship to all free inhabitants of the Empire, including Egyptians. This effectively removed the legal distinctions between the Greek-speaking elite in Alexandria and the native Egyptian population.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Constitutio_Antoniniana'
+      description: "Granted Roman citizenship to all free inhabitants of the Empire.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Constitutio_Antoniniana',
+      importance: 2
     },
     {
       id: 'zenobia-occupation',
       name: 'The Occupation of Zenobia',
       year: 269,
       category: 'war',
-      description: "Egypt was briefly seized by Queen Zenobia of Palmyra in 269 CE. She successfully occupied the province for two years before the Emperor Aurelian reclaimed it for Rome in 271 CE.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Zenobia'
+      description: "Egypt was briefly occupied by the Palmyrene Empire.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Zenobia',
+      importance: 2
     },
     {
       id: 'diocletian-reforms',
       name: 'Diocletian’s Reforms',
       year: 298,
       category: 'politics',
-      description: "After suppressing a revolt in Alexandria, Diocletian restructured the province, dividing it into smaller units to better manage tax collection and security. He also erected 'Pompey's Pillar' (which actually honours Diocletian) in Alexandria.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Diocletian'
+      description: "Diocletian restructured Egypt and divided it into smaller units.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Diocletian',
+      importance: 2
     },
     {
       id: 'council-chalcedon',
       name: 'The Council of Chalcedon',
       year: 451,
       category: 'religion',
-      description: "A major theological schism occurred regarding the nature of Christ. The Egyptian (Coptic) Church rejected the council's decision, leading to a long-standing divide between the local population and the imperial government in Constantinople.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Council_of_Chalcedon'
+      description: "A major theological schism that divided the Coptic church from Constantinople.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Council_of_Chalcedon',
+      importance: 2
     },
     {
       id: 'arab-conquest',
       name: 'The Arab Conquest',
       year: 641,
       category: 'war',
-      description: "Following decades of conflict with the Sassanid Persians, the Byzantine (East Roman) Empire lost Egypt to the Rashidun Caliphate under Amr ibn al-As, marking the end of over 600 years of Roman rule.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Muslim_conquest_of_Egypt'
+      description: "Marked the end of over 600 years of Roman and Byzantine rule.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Muslim_conquest_of_Egypt',
+      importance: 3
     }
   ],
   constructions: [
@@ -473,241 +497,270 @@ export const egyptData: TimelineData = {
       name: 'Step Pyramid of Djoser',
       year: -2650,
       category: 'monument',
-      description: "The Step Pyramid at Saqqara was the world's first large stone building, designed by the brilliant architect Imhotep for Pharaoh Djoser. It rises in six giant steps to a height of 62 metres.",
+      description: "The world's first large stone building, designed by Imhotep.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Pyramid_of_Djoser',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Saqqara_BW_5.jpg/320px-Saqqara_BW_5.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Saqqara_BW_5.jpg/320px-Saqqara_BW_5.jpg',
+      importance: 3
     },
     {
       id: 'great-pyramid',
       name: 'Great Pyramid of Khufu',
       year: -2560,
       category: 'monument',
-      description: "The Great Pyramid was built for Pharaoh Khufu and is the oldest of the Seven Wonders of the Ancient World — and the only one still largely intact.",
+      description: "The oldest and largest of the Seven Wonders of the Ancient World.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Great_Pyramid_of_Giza',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Khufu%27s_Pyramid_in_2010.jpg/320px-Khufu%27s_Pyramid_in_2010.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Khufu%27s_Pyramid_in_2010.jpg/320px-Khufu%27s_Pyramid_in_2010.jpg',
+      importance: 3
     },
     {
       id: 'pyramid-khafre',
       name: 'Pyramid of Khafre',
       year: -2540,
       category: 'monument',
-      description: "Built for Pharaoh Khafre, this is the second-largest pyramid at Giza. It retains some of its original limestone casing at the very top.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pyramid_of_Khafre'
+      description: "The second-largest pyramid at Giza.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pyramid_of_Khafre',
+      importance: 2
     },
     {
       id: 'pyramid-menkaure',
       name: 'Pyramid of Menkaure',
       year: -2510,
       category: 'monument',
-      description: "The smallest of the three main Giza pyramids, built for Pharaoh Menkaure. It features complex granite casing at the base.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pyramid_of_Menkaure'
+      description: "The smallest of the three main Giza pyramids.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pyramid_of_Menkaure',
+      importance: 2
     },
     {
       id: 'great-sphinx',
       name: 'Great Sphinx of Giza',
       year: -2530,
       category: 'monument',
-      description: "The Great Sphinx is the largest monumental sculpture in the ancient world, carved from a single ridge of limestone.",
+      description: "The largest monumental sculpture in the ancient world.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Great_Sphinx_of_Giza',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Great_Sphinx_of_Giza_-_20080716a.jpg/320px-Great_Sphinx_of_Giza_-_20080716a.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Great_Sphinx_of_Giza_-_20080716a.jpg/320px-Great_Sphinx_of_Giza_-_20080716a.jpg',
+      importance: 3
     },
     {
       id: 'temple-hatshepsut',
       name: 'Temple of Hatshepsut',
       year: -1458,
       category: 'temple',
-      description: "The mortuary temple of Hatshepsut at Deir el-Bahri is considered one of the most beautiful buildings of the ancient world.",
+      description: "A magnificent mortuary temple at Deir el-Bahri.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Mortuary_Temple_of_Hatshepsut',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Mortuary_temple_of_Hatshepsut_2010.jpg/320px-Mortuary_temple_of_Hatshepsut_2010.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Mortuary_temple_of_Hatshepsut_2010.jpg/320px-Mortuary_temple_of_Hatshepsut_2010.jpg',
+      importance: 3
     },
     {
       id: 'luxor-temple',
       name: 'Luxor Temple',
       year: -1390,
       category: 'temple',
-      description: "The Luxor Temple was built mainly by Amenhotep III and Ramesses II on the east bank of the Nile.",
+      description: "Built mainly by Amenhotep III and Ramesses II on the east bank of the Nile.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Luxor_Temple',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Luxor_temple_R01.jpg/320px-Luxor_temple_R01.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Luxor_temple_R01.jpg/320px-Luxor_temple_R01.jpg',
+      importance: 3
     },
     {
       id: 'karnak-temple',
       name: 'Karnak Temple Complex',
       year: -1365,
       category: 'temple',
-      description: "The Karnak Temple Complex at Luxor is the largest religious building ever constructed. Built over 2,000 years, it covers over 100 hectares.",
+      description: "The largest religious building ever constructed.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Karnak',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Karnak_temple_Ramesses_III_forecourt_entrance.jpg/320px-Karnak_temple_Ramesses_III_forecourt_entrance.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Karnak_temple_Ramesses_III_forecourt_entrance.jpg/320px-Karnak_temple_Ramesses_III_forecourt_entrance.jpg',
+      importance: 3
     },
     {
       id: 'valley-of-kings',
       name: 'Valley of the Kings',
       year: -1350,
       category: 'monument',
-      description: "The royal burial ground for pharaohs of the New Kingdom. Cut deep into the rock, these decorated tombs were filled with treasures.",
+      description: "The royal burial ground for pharaohs of the New Kingdom.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Valley_of_the_Kings',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Valley_of_the_Kings_from_above.jpg/320px-Valley_of_the_Kings_from_above.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Valley_of_the_Kings_from_above.jpg/320px-Valley_of_the_Kings_from_above.jpg',
+      importance: 3
     },
     {
       id: 'abu-simbel',
       name: 'Abu Simbel Temples',
       year: -1279,
       category: 'temple',
-      description: "Ramesses II carved two enormous temples directly into a sandstone cliff. The Great Temple is guarded by four 20-metre statues of Ramesses himself.",
+      description: "Ramesses II carved two enormous temples directly into a sandstone cliff.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Abu_Simbel_temples',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Abu_Simbel%2C_Ramesses_Temple%2C_front%2C_Egypt%2C_Oct_2004.jpg/320px-Abu_Simbel%2C_Ramesses_Temple%2C_front%2C_Egypt%2C_Oct_2004.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Abu_Simbel%2C_Ramesses_Temple%2C_front%2C_Egypt%2C_Oct_2004.jpg/320px-Abu_Simbel%2C_Ramesses_Temple%2C_front%2C_Egypt%2C_Oct_2004.jpg',
+      importance: 3
     },
     {
       id: 'ptolemais-hermiou',
       name: 'Ptolemais Hermiou',
       year: -305,
       category: 'landmark',
-      description: "Founded in Upper Egypt shortly after 305 BCE to serve as a major Greek administrative centre deep in the Nile Valley.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Ptolemais_Hermiou'
+      description: "A major Greek administrative centre deep in the Nile Valley.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Ptolemais_Hermiou',
+      importance: 1
     },
     {
       id: 'library-alexandria',
       name: 'Library of Alexandria',
       year: -290,
       category: 'landmark',
-      description: "Founded circa 290–280 BCE, the Museion and Great Library was the world's premier centre for science, mathematics, and literature.",
+      description: "The premier centre for science and literature in the ancient world.",
       wikipediaUrl: 'https://en.wikipedia.org/wiki/Library_of_Alexandria',
-      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Ancientlibraryalex.jpg/320px-Ancientlibraryalex.jpg'
+      imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Ancientlibraryalex.jpg/320px-Ancientlibraryalex.jpg',
+      importance: 3
     },
     {
       id: 'lighthouse-alexandria',
       name: 'Lighthouse of Alexandria',
       year: -280,
       category: 'landmark',
-      description: "The Pharos of Alexandria was completed around 280 BCE under Ptolemy II. Standing over 100 metres tall, it was one of the Seven Wonders of the Ancient World.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Lighthouse_of_Alexandria'
+      description: "One of the Seven Wonders of the Ancient World.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Lighthouse_of_Alexandria',
+      importance: 3
     },
     {
       id: 'temple-philae',
       name: 'Temple of Isis at Philae',
       year: -275,
       category: 'temple',
-      description: "The majority of the standing structures at Philae, including the First Pylon, were built between 280 BCE and 80 BCE.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Philae'
+      description: "Constructed during the Ptolemaic period on a beautiful island.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Philae',
+      importance: 2
     },
     {
       id: 'fayum-reclamation',
       name: 'Fayum Land Reclamation',
       year: -270,
       category: 'monument',
-      description: "Massive irrigation projects during the reigns of Ptolemy I and II turned the Fayum Oasis into a massive agricultural hub.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Faiyum_Oasis'
+      description: "Massive irrigation project turned Fayum into an agricultural hub.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Faiyum_Oasis',
+      importance: 1
     },
     {
       id: 'serapeum-alexandria',
       name: 'The Serapeum of Alexandria',
       year: -240,
       category: 'monument',
-      description: "A massive temple to the Greco-Egyptian god Serapis, commissioned by Ptolemy III around 240 BCE.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Serapeum_of_Alexandria'
+      description: "A massive temple dedicated to the god Serapis.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Serapeum_of_Alexandria',
+      importance: 2
     },
     {
       id: 'temple-edfu',
       name: 'Temple of Horus at Edfu',
       year: -237,
       category: 'temple',
-      description: "Construction began in 237 BCE and was completed in 57 BCE. It is the best-preserved cult temple in all of Egypt.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Edfu'
+      description: "The best-preserved cult temple in all of Egypt.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Edfu',
+      importance: 2
     },
     {
       id: 'temple-khnum-esna',
       name: 'Temple of Khnum at Esna',
       year: -180,
       category: 'temple',
-      description: "The earliest parts of the standing temple date to Ptolemy VI (180–145 BCE), though much of the decoration is Roman.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Esna#Temple_of_Esna'
+      description: "Earliest parts date to Ptolemy VI; famous for its hypostyle hall.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Esna#Temple_of_Esna',
+      importance: 1
     },
     {
       id: 'temple-kom-ombo',
       name: 'Temple of Kom Ombo',
       year: -175,
       category: 'temple',
-      description: "A unique 'double temple' dedicated to Sobek and Haroeris, started around 180 BCE by Ptolemy VI.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Kom_Ombo'
+      description: "A unique 'double temple' dedicated to Sobek and Haroeris.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Kom_Ombo',
+      importance: 2
     },
     {
       id: 'temple-dendera',
       name: 'Temple of Hathor at Dendera',
       year: -54,
       category: 'temple',
-      description: "Largely rebuilt beginning in 54 BCE during the reign of Ptolemy XII and continued under Cleopatra VII.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Dendera_Temple_complex'
+      description: "Largely rebuilt beginning in 54 BCE during the reign of Ptolemy XII.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Dendera_Temple_complex',
+      importance: 2
     },
     {
       id: 'temple-kalabsha',
       name: 'Temple of Kalabsha',
       year: -30,
       category: 'temple',
-      description: "Built starting around 30 BCE under Augustus, it is one of the most complete examples of Roman-funded Egyptian architecture.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Kalabsha'
+      description: "Built starting around 30 BCE under Augustus.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Temple_of_Kalabsha',
+      importance: 1
     },
     {
       id: 'dendera-mammisi',
       name: 'Mammisi at Dendera',
       year: -10,
       category: 'monument',
-      description: "The Birth House at Dendera was built during the reign of Augustus with later additions by Trajan and Hadrian.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Mammisi'
+      description: "Birth House built during the reign of Augustus.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Mammisi',
+      importance: 1
     },
     {
       id: 'esna-hypostyle',
       name: 'Temple of Esna (Hypostyle Hall)',
       year: 40,
       category: 'temple',
-      description: "The surviving hypostyle hall was constructed and decorated between 40 CE and 250 CE (reigns of Claudius to Decius).",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Esna#Temple_of_Esna'
+      description: " surviving hypostyle hall was constructed and decorated between 40 CE and 250 CE.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Esna#Temple_of_Esna',
+      importance: 1
     },
     {
       id: 'trajans-kiosk',
       name: 'Trajan’s Kiosk (Philae)',
       year: 98,
       category: 'monument',
-      description: "While parts may date to Augustus, the majority of this iconic structure is attributed to Trajan’s reign (98–117 CE).",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Philae'
+      description: "A majority of this iconic structure is attributed to Trajan’s reign.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Philae',
+      importance: 2
     },
     {
       id: 'nile-red-sea-canal',
       name: 'Nile-Red Sea Canal',
       year: 106,
       category: 'landmark',
-      description: "The 'Amnis Traianus' was reconstructed in 106 CE by Emperor Trajan, linking the Nile directly to the Red Sea for trade ships.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Canal_of_the_Pharaohs'
+      description: "Linked the Nile directly to the Red Sea for trade ships.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Canal_of_the_Pharaohs',
+      importance: 2
     },
     {
       id: 'antinoopolis',
       name: 'Antinoöpolis',
       year: 130,
       category: 'landmark',
-      description: "Founded on October 30, 130 CE, by Emperor Hadrian. It was the first Greek-style polis built from scratch by Romans in Egypt.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Antino%C3%B6polis'
+      description: "Founded by Emperor Hadrian in memory of Antinous.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Antino%C3%B6polis',
+      importance: 1
     },
     {
       id: 'via-nova-hadriana',
       name: 'Via Nova Hadriana',
       year: 137,
       category: 'road',
-      description: "An 800km desert highway completed in 137 CE, connecting Antinoöpolis to the Red Sea port of Berenike.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Via_Hadriana'
+      description: "An 800km desert highway connecting Antinoöpolis to the Red Sea.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Via_Hadriana',
+      importance: 1
     },
     {
       id: 'pompeys-pillar',
       name: 'Pompey’s Pillar',
       year: 297,
       category: 'monument',
-      description: "Dedicated in 297/298 CE to commemorate Diocletian’s victory over the usurper Domitius Domitianus in Alexandria.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pompey%27s_Pillar_(column)'
+      description: "Dedicated to commemorate Diocletian’s victory in Alexandria.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Pompey%27s_Pillar_(column)',
+      importance: 1
     },
     {
       id: 'babylon-fortress',
       name: 'Babylon Fortress',
       year: 300,
       category: 'fort',
-      description: "The modern visible ruins (the massive round towers in Old Cairo) were constructed circa 300 CE under Emperor Diocletian.",
-      wikipediaUrl: 'https://en.wikipedia.org/wiki/Babylon_Fortress'
+      description: "Constructed circa 300 CE under Emperor Diocletian.",
+      wikipediaUrl: 'https://en.wikipedia.org/wiki/Babylon_Fortress',
+      importance: 2
     }
   ]
 };
