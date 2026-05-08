@@ -44,6 +44,14 @@ export interface Construction {
   imageUrl?: string;
 }
 
+export interface Population {
+  id: string;
+  century: string;
+  year: number; // for positioning
+  count: string;
+  description: string;
+}
+
 export interface TimelineData {
   id: TimelineId;
   title: string;
@@ -56,4 +64,5 @@ export interface TimelineData {
   rulers: Ruler[];
   events: Event[];
   constructions: Construction[];
+  population?: Population[];
 }

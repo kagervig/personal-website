@@ -14,8 +14,9 @@ interface SearchStore {
   showRulers: boolean;
   showConstructions: boolean;
   showEvents: boolean;
+  showPopulation: boolean;
   
-  toggleRow: (row: 'showEras' | 'showRulers' | 'showConstructions' | 'showEvents') => void;
+  toggleRow: (row: 'showEras' | 'showRulers' | 'showConstructions' | 'showEvents' | 'showPopulation') => void;
   
   selectedItem: any | null; // generic item for detail panel
   setSelectedItem: (item: any | null) => void;
@@ -37,6 +38,7 @@ export const useSearch = create<SearchStore>((set) => ({
   showRulers: true,
   showConstructions: true,
   showEvents: true,
+  showPopulation: true,
   
   toggleRow: (row) => set((state) => ({ [row]: !state[row] })),
   

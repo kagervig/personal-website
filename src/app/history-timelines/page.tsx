@@ -231,7 +231,7 @@ function TimelineContent() {
         </div>
 
         <div className="flex flex-1 overflow-hidden relative" style={{ background: 'var(--ht-canvas)' }}>
-          <RowLabels />
+          <RowLabels timeline={timeline} />
           <TimelineCanvas timeline={timeline} containerWidth={containerWidth} />
           <DetailPanel />
           <TourPlayer />

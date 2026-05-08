@@ -1,42 +1,52 @@
 import React from 'react';
+import { useSearch } from '@/lib/history-timeline/useSearch';
+import { TimelineData } from '@/lib/history-timeline/types';
 
-const rows: { label: string; height: number }[] = [
-  { label: 'ERAS',          height: 60  },
-  { label: 'RULERS',        height: 80  },
-  { label: 'CONSTRUCTIONS', height: 120 },
-  { label: 'EVENTS',        height: 180 },
-];
+interface RowLabelsProps {
+  timeline: TimelineData;
+}
 
-export const RowLabels: React.FC = () => {
+export const RowLabels: React.FC<RowLabelsProps> = ({ timeline }) => {
+  const { showEras, showRulers, showConstructions, showEvents, showPopulation } = useSearch();
+
   return (
     <div
-      className="w-[140px] shrink-0 flex flex-col z-10 sticky left-0 h-[480px]"
+      className="w-[120px] shrink-0 flex flex-col z-20 sticky left-0 pointer-events-none"
       style={{
         background: 'var(--ht-surface)',
         borderRight: '1px solid var(--ht-border)',
-        boxShadow: '2px 0 10px rgba(0,0,0,0.15)',
+        boxShadow: '4px 0 12px rgba(0,0,0,0.1)',
       }}
     >
-      {/* Year axis spacer */}
       <div className="h-[40px] shrink-0" style={{ borderBottom: '1px solid var(--ht-border)' }} />
 
-      {rows.map(({ label, height }, i) => (
-        <div
-          key={label}
-          className="shrink-0 flex items-center px-4"
-          style={{
-            height,
-            borderBottom: i < rows.length - 1 ? '1px solid var(--ht-border)' : undefined,
-          }}
-        >
-          <span
-            className="text-[10px] font-bold tracking-widest select-none writing-mode-vertical-lr"
-            style={{ color: 'var(--ht-text-muted)' }}
-          >
-            {label}
-          </span>
+      {showEras && (
+        <div className="shrink-0 flex items-center px-4" style={{ height: 60, borderBottom: '1px solid var(--ht-border)' }}>
+          <span className="text-[9px] font-bold tracking-widest text-gray-500 uppercase">Eras</span>
         </div>
-      ))}
+      )}
+      {showRulers && (
+        <div className="shrink-0 flex items-center px-4" style={{ height: 80, borderBottom: '1px solid var(--ht-border)' }}>
+          <span className="text-[9px] font-bold tracking-widest text-gray-500 uppercase">Rulers</span>
+        </div>
+      )}
+      {showConstructions && (
+        <div className="shrink-0 flex items-center px-4" style={{ height: 120, borderBottom: '1px solid var(--ht-border)' }}>
+          <span className="text-[9px] font-bold tracking-widest text-gray-500 uppercase">Monuments</span>
+        </div>
+      )}
+      {showEvents && (
+        <div className="shrink-0 flex items-center px-4" style={{ height: 180 }}>
+          <span className="text-[9px] font-bold tracking-widest text-gray-500 uppercase">Events</span>
+        </div>
+      )}
+      {timeline.population && showPopulation && (
+        <div className="shrink-0 flex items-center px-4" style={{ height: 60, borderTop: '1px solid var(--ht-border)' }}>
+          <span className="text-[9px] font-bold tracking-widest text-sky-600/80 uppercase">Population</span>
+        </div>
+      )}
     </div>
   );
 };
+
+

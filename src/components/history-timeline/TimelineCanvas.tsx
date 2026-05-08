@@ -7,6 +7,7 @@ import { EraRow } from './EraRow';
 import { RulerRow } from './RulerRow';
 import { EventRow } from './EventRow';
 import { ConstructionRow } from './ConstructionRow';
+import { PopulationRow } from './PopulationRow';
 import { YearAxis } from './YearAxis';
 
 const PADDING_LEFT = 50;
@@ -18,7 +19,7 @@ interface TimelineCanvasProps {
 
 export const TimelineCanvas: React.FC<TimelineCanvasProps> = ({ timeline, containerWidth }) => {
   const { zoom, panX, setPanX, navigateTo } = useTimeline();
-  const { showEras, showRulers, showConstructions, showEvents, activeCategories, searchQuery } = useSearch();
+  const { showEras, showRulers, showConstructions, showEvents, showPopulation, activeCategories, searchQuery } = useSearch();
 
   const yearToPixel = (year: number) => (year - timeline.startYear) * zoom + PADDING_LEFT;
 
@@ -30,6 +31,7 @@ export const TimelineCanvas: React.FC<TimelineCanvasProps> = ({ timeline, contai
   const filteredConstructions = timeline.constructions.filter(c => matchesSearch(c));
   const filteredRulers        = timeline.rulers.filter(r => matchesSearch(r));
   const filteredEras          = timeline.eras.filter(e => matchesSearch(e));
+  const filteredPopulation    = timeline.population || [];
 
   const totalYears  = timeline.endYear - timeline.startYear;
   const canvasWidth = Math.max(containerWidth, totalYears * zoom + PADDING_LEFT * 2);
@@ -110,6 +112,12 @@ export const TimelineCanvas: React.FC<TimelineCanvasProps> = ({ timeline, contai
         <div className="relative shrink-0" style={{ height: 180 }}>
           {showEvents && <EventRow events={filteredEvents} yearToPixel={yearToPixel} />}
         </div>
+
+        {timeline.population && showPopulation && (
+          <div className="relative shrink-0" style={{ height: 60, borderTop: rowBorder }}>
+            <PopulationRow data={filteredPopulation} yearToPixel={yearToPixel} />
+          </div>
+        )}
       </motion.div>
     </div>
   );

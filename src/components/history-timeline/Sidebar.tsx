@@ -73,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ timeline, onNavigate }) => {
   const {
     searchQuery, setSearchQuery,
     activeCategories, toggleCategory,
-    showEras, showRulers, showConstructions, showEvents, toggleRow,
+    showEras, showRulers, showConstructions, showEvents, showPopulation, toggleRow,
     setSelectedItem,
   } = useSearch();
 
@@ -290,6 +290,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ timeline, onNavigate }) => {
             <RowToggle label="Rulers"        isActive={showRulers}        onClick={() => toggleRow('showRulers')} />
             <RowToggle label="Constructions" isActive={showConstructions} onClick={() => toggleRow('showConstructions')} />
             <RowToggle label="Events"        isActive={showEvents}        onClick={() => toggleRow('showEvents')} />
+            {timeline.population && (
+              <RowToggle label="Population" isActive={showPopulation} onClick={() => toggleRow('showPopulation')} />
+            )}
           </div>
         </section>
 
