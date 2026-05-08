@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --font-display: var(--app-font-display);
+}
+
+/* ─── Timeline variables ───────────────────────────────────────────────── */
+:root {
+  --primary-border: #2563eb;
+  --secondary-border: #e5e7eb;
+  --muted-border: #f3f4f6;
+  --accent-border: #d1d5db;
+  --destructive-border: #ef4444;
+  
+  /* ─── Light mode defaults ─── */
+  --ht-bg:           #f5f0e4;
+  --ht-bg-alt:       #ede8db;
+  --ht-canvas:       #faf7f0;
+  --ht-surface:      #ffffff;
+  --ht-surface-2:    #ede8dc;
+  --ht-border:       #d4ccc0;
+  --ht-border-str:   #b5ad9f;
+  --ht-text:         #1a1410;
+  --ht-text-2:       #3d3530;
+  --ht-text-muted:   #7d7068;
+  --ht-label-bg:     rgba(250, 247, 240, 0.92);
+  --ht-ruler-bar:    #c4d4ee;
+  --ht-ruler-bdr:    #7090c0;
+  --ht-ruler-hover:  #a8c0e8;
+  --ht-ruler-lbl:    #1e3a7a;
+  --ht-unknown-bar:  rgba(200,190,175,0.4);
+  --ht-unknown-bdr:  #b5ad9f;
+  
+  --ht-accent:       #c9a44a;
+  --ht-accent-dim:   rgba(201, 164, 74, 0.14);
+
+  --app-font-display: 'Cinzel', serif;
+}
+
+.dark {
+  --primary-border: #1d4ed8;
+  --secondary-border: #374151;
+  --muted-border: #1f2937;
+  --accent-border: #4b5563;
+  --destructive-border: #b91c1c;
+
+  /* ─── Dark mode overrides ─── */
+  --ht-bg:           #0f1117;
+  --ht-bg-alt:       #0d1117;
+  --ht-canvas:       #111827;
+  --ht-surface:      #161b22;
+  --ht-surface-2:    #1f2937;
+  --ht-border:       #1f2937;
+  --ht-border-str:   #30363d;
+  --ht-text:         #ffffff;
+  --ht-text-2:       #d1d5db;
+  --ht-text-muted:   #6b7280;
+  --ht-label-bg:     rgba(13, 17, 23, 0.78);
+  --ht-ruler-bar:    #1e3a5f;
+  --ht-ruler-bdr:    #2a4a7f;
+  --ht-ruler-hover:  #2a5a9f;
+  --ht-ruler-lbl:    #93c5fd;
+  --ht-unknown-bar:  rgba(31,41,55,0.4);
+  --ht-unknown-bdr:  #374151;
+}
+
+/* ─── Per-timeline accent colours ────────────────────────────────────────── */
+.theme-egypt {
+  --ht-accent:     #c9a44a;
+  --ht-accent-dim: rgba(201, 164, 74, 0.14);
+}
+.theme-rome {
+  --ht-accent:     #b5444a;
+  --ht-accent-dim: rgba(181, 68, 74, 0.14);
+}
+.theme-romans-in-britain {
+  --ht-accent:     #5e8b5e;
+  --ht-accent-dim: rgba(94, 139, 94, 0.14);
+}
+.theme-british-monarchy {
+  --ht-accent:     #8b3a52;
+  --ht-accent-dim: rgba(139, 58, 82, 0.14);
+}
+.theme-britain {
+  --ht-accent:     #4a7a8b;
+  --ht-accent-dim: rgba(74, 122, 139, 0.14);
+}
+
+/* Custom Scrollbar */
+.history-timeline-root ::-webkit-scrollbar { width: 8px; height: 8px; }
+.history-timeline-root ::-webkit-scrollbar-track { background: var(--ht-bg); }
+.history-timeline-root ::-webkit-scrollbar-thumb { background: var(--ht-border-str); border-radius: 4px; }
+.history-timeline-root ::-webkit-scrollbar-thumb:hover { background: var(--ht-text-muted); }
