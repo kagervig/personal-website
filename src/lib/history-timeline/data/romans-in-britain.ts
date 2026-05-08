@@ -1,4 +1,4 @@
-import { TimelineData } from './types';
+import { TimelineData, Era, Ruler, Event, Construction, TimelineId } from '../types';
 
 export const romansInBritainData: TimelineData = {
   id: 'romans-in-britain',

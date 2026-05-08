@@ -1,4 +1,4 @@
-import { Tour } from './tourTypes';
+import { Tour, TourSlide } from '../tourTypes';
 
 export const egyptGuidedTour: Tour = {
   id: 'egypt-guided-tour-1',
