@@ -39,7 +39,7 @@ export const Hero = () => {
           transition={{ duration: 0.8 }}
         >
           {/* Hidden on mobile — the nav already shows the name */}
-          <h1 className="hidden md:block text-6xl md:text-8xl font-bold tracking-tighter text-ink mb-6">
+          <h1 className="hidden md:block text-6xl md:text-8xl font-bold tracking-tighter text-black mb-6">
             Kristian Allin
           </h1>
           <p className="text-lg md:text-2xl text-black leading-relaxed mb-6 md:mb-10">
@@ -48,21 +48,21 @@ export const Hero = () => {
           <div className="flex items-center justify-center md:justify-start gap-3 md:gap-4">
             <a
               href="#projects"
-              className="px-6 md:px-8 py-3 md:py-4 bg-ink text-white dark:text-black rounded-xl font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 shadow-lg shadow-ink/10 text-sm md:text-base"
+              className="px-6 md:px-8 py-3 md:py-4 bg-black text-white rounded-xl font-bold hover:bg-accent transition-all hover:scale-105 active:scale-95 shadow-lg shadow-black/10 text-sm md:text-base"
             >
               View Projects
             </a>
             <a
               href="https://github.com/kagervig"
               target="_blank"
-              className="p-3 md:p-4 bg-ink text-white dark:text-black hover:bg-accent rounded-2xl transition-all hover:scale-105 active:scale-95"
+              className="p-3 md:p-4 bg-black text-white hover:bg-accent rounded-2xl transition-all hover:scale-105 active:scale-95"
             >
               <GithubIcon size={20} />
             </a>
             <a
               href="https://www.linkedin.com/in/kristian-allin/"
               target="_blank"
-              className="p-3 md:p-4 bg-ink text-white dark:text-black hover:bg-accent rounded-2xl transition-all hover:scale-105 active:scale-95"
+              className="p-3 md:p-4 bg-black text-white hover:bg-accent rounded-2xl transition-all hover:scale-105 active:scale-95"
             >
               <LinkedinIcon size={20} />
             </a>

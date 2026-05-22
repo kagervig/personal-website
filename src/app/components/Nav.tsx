@@ -32,7 +32,7 @@ export const Nav = ({ activeSection, isMenuOpen, setIsMenuOpen }: NavProps) => {
                 href={`#${link.id}`}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  activeSection === link.id ? "text-primary" : "text-muted-foreground"
+                  activeSection === link.id ? "text-primary" : "text-muted-foreground dark:text-slate-300"
                 )}
               >
                 {link.label}
@@ -40,7 +40,7 @@ export const Nav = ({ activeSection, isMenuOpen, setIsMenuOpen }: NavProps) => {
             ))}
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-xl text-muted-foreground hover:text-primary transition-colors"
+              className="p-2 rounded-xl text-muted-foreground dark:text-slate-300 hover:text-primary transition-colors"
               aria-label="Toggle dark mode"
             >
               {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
@@ -92,7 +92,7 @@ export const Nav = ({ activeSection, isMenuOpen, setIsMenuOpen }: NavProps) => {
                   onClick={() => setIsMenuOpen(false)}
                   className={cn(
                     "text-lg font-medium py-2 border-b border-gray-100 dark:border-gray-700 last:border-none",
-                    activeSection === link.id ? "text-primary" : "text-muted-foreground"
+                    activeSection === link.id ? "text-primary" : "text-muted-foreground dark:text-slate-300"
                   )}
                 >
                   {link.label}
@@ -100,7 +100,7 @@ export const Nav = ({ activeSection, isMenuOpen, setIsMenuOpen }: NavProps) => {
               ))}
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="flex items-center gap-2 text-lg font-medium text-muted-foreground py-2"
+                className="flex items-center gap-2 text-lg font-medium text-muted-foreground dark:text-slate-300 py-2"
               >
                 {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                 {theme === 'dark' ? 'Light mode' : 'Dark mode'}
