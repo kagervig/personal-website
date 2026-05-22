@@ -34,6 +34,17 @@ export const PersonalSection = () => (
           My photos and footage are featured on Adobe Stock, Shutterstock, Getty, and Envato, and I run two YouTube channels covering travel and drone cinematography.
         </p>
         <p>I've lived in the UK, Germany and Canada. I speak German professionally, Spanish conversationally, and enough Mandarin and Danish to get by as a tourist.</p>
+        <p>
+          I also have a blog,{' '}
+          <a
+            href="https://www.egallagher.com/blog"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline font-medium"
+          >
+            check it out here!
+          </a>
+        </p>
       </div>
     </div>
 
@@ -130,7 +141,7 @@ export const PersonalSection = () => (
       <div className="space-y-6">
         <h3 className="text-xl font-bold flex items-center gap-2">
           <MapIcon className="text-foreground" />
-          Travel Map
+          Travel
         </h3>
         <p className="text-sm text-muted-foreground text-center">I'm fortunate to have traveled far and wide, here's everywhere I've been so far!</p>
         <div className="max-w-4xl mx-auto w-full">
