@@ -23,7 +23,7 @@ export const PersonalSection = () => (
         alt="Kristian Allin"
         className="w-60 h-60 rounded-3xl object-cover flex-shrink-0 shadow-lg mx-auto md:mx-0"
       />
-      <div className="space-y-4 text-muted leading-relaxed">
+      <div className="space-y-4 text-muted-foreground leading-relaxed">
         <p>
           I'm Kristian — a full-stack developer and former product manager based in Toronto, Canada.
           I spent nearly a decade working in marketing and product at Keysight Technologies before
@@ -58,8 +58,8 @@ export const PersonalSection = () => (
                 />
                 <div>
                   <h4 className="font-bold">{channel.name}</h4>
-                  <p className="text-xs text-muted mb-1">{channel.subscribers} subscribers</p>
-                  <p className="text-sm text-muted">{channel.description}</p>
+                  <p className="text-xs text-muted-foreground mb-1">{channel.subscribers} subscribers</p>
+                  <p className="text-sm text-muted-foreground">{channel.description}</p>
                 </div>
               </div>
               <a
@@ -78,7 +78,7 @@ export const PersonalSection = () => (
       {/* Favorite Apps */}
       <div className="space-y-6">
         <h3 className="text-xl font-bold flex items-center gap-2">
-          <Smartphone className="text-accent" />
+          <Smartphone className="text-foreground" />
           Favorite Apps
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -91,7 +91,7 @@ export const PersonalSection = () => (
               />
               <div>
                 <h4 className="font-bold text-sm">{app.name}</h4>
-                <p className="text-xs text-muted">{app.description}</p>
+                <p className="text-xs text-muted-foreground">{app.description}</p>
               </div>
             </div>
           ))}
@@ -103,11 +103,11 @@ export const PersonalSection = () => (
       {/* Photo Carousel */}
       <div className="space-y-6">
         <h3 className="text-xl font-bold flex items-center gap-2">
-          <Camera className="text-accent" />
+          <Camera className="text-foreground" />
           Photography
         </h3>
         <PhotoCarousel photos={PERSONAL.photos} />
-        <p className="text-sm text-muted text-center max-w-4xl mx-auto w-full">
+        <p className="text-sm text-muted-foreground text-center max-w-4xl mx-auto w-full">
           I sell stock photos and footage as a successful contributor on these four platforms.
         </p>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto w-full">
@@ -120,7 +120,7 @@ export const PersonalSection = () => (
             >
               <div className="flex-shrink-0">{STOCK_ICONS[link.name]}</div>
               <span className="text-sm font-medium group-hover:text-accent transition-colors">{link.name}</span>
-              <ExternalLink size={12} className="text-muted opacity-0 group-hover:opacity-100 transition-all ml-auto flex-shrink-0" />
+              <ExternalLink size={12} className="text-muted-foreground opacity-0 group-hover:opacity-100 transition-all ml-auto flex-shrink-0" />
             </a>
           ))}
         </div>
@@ -129,10 +129,10 @@ export const PersonalSection = () => (
       {/* Visited Countries Map Widget */}
       <div className="space-y-6">
         <h3 className="text-xl font-bold flex items-center gap-2">
-          <MapIcon className="text-accent" />
+          <MapIcon className="text-foreground" />
           Travel Map
         </h3>
-        <p className="text-sm text-muted text-center">I'm fortunate to have traveled far and wide, here's everywhere I've been so far!</p>
+        <p className="text-sm text-muted-foreground text-center">I'm fortunate to have traveled far and wide, here's everywhere I've been so far!</p>
         <div className="max-w-4xl mx-auto w-full">
           <TravelMap visitedCountryCodes={PERSONAL.visitedCountryCodes} />
         </div>
