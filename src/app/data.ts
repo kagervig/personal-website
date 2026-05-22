@@ -48,7 +48,7 @@ export const EXPERIENCE = [
     id: "keysight-tpm",
     company: "Keysight Technologies",
     role: "Technical Product Manager",
-    period: "2022 – 2025",
+    period: "2021 – 2025",
     location: "Toronto, Canada",
     description:
       "Led the re-architecture of Keysight's product information management system — the data backbone behind a 4,000+ SKU catalogue serving aerospace, defence, and electronics customers globally.",
@@ -67,7 +67,7 @@ export const EXPERIENCE = [
     id: "keysight-mm",
     company: "Keysight Technologies",
     role: "Marketing Manager, Brand",
-    period: "2020 – 2022",
+    period: "2020 – 2021",
     location: "Toronto, Canada",
     description:
       "Led Keysight's corporate rebranding initiative end-to-end — from vendor selection through to global rollout — and rebuilt the organisation's entire email infrastructure from scratch.",
