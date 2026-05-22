@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ExternalLink } from 'lucide-react';
+import { GithubIcon } from './icons';
 import { cn } from '@/lib/utils';
 
 interface ExpandableCardProps {
@@ -10,6 +11,7 @@ interface ExpandableCardProps {
   details: string[];
   tags?: string[];
   link?: string;
+  repoLink?: string;
   isOpen: boolean;
   onToggle: () => void;
 }
@@ -22,6 +24,7 @@ export const ExpandableCard = ({
   details,
   tags,
   link,
+  repoLink,
   isOpen,
   onToggle
 }: ExpandableCardProps) => (
@@ -70,6 +73,31 @@ export const ExpandableCard = ({
       )}
     </button>
 
+    {(link || repoLink) && (
+      <div className="flex items-center gap-4 px-6 md:px-8 pb-4">
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+          >
+            View project <ExternalLink size={14} />
+          </a>
+        )}
+        {repoLink && (
+          <a
+            href={repoLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+          >
+            GitHub <GithubIcon size={14} />
+          </a>
+        )}
+      </div>
+    )}
+
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -93,19 +121,6 @@ export const ExpandableCard = ({
                 </motion.li>
               ))}
             </ul>
-            {link && (
-              <div className="mt-6">
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                  onClick={e => e.stopPropagation()}
-                >
-                  View project <ExternalLink size={14} />
-                </a>
-              </div>
-            )}
           </div>
         </motion.div>
       )}

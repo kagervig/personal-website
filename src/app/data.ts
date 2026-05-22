@@ -15,6 +15,7 @@ export const PROJECTS = [
       "Dijkstra's Algorithm",
     ],
     link: "https://cityhopper.vercel.app/",
+    repoLink: "https://github.com/kagervig/FlightSearch",
     details: [
       "Solves a real-world variant of the Travelling Salesman Problem: given a home city and up to 5 destinations, builds a weighted airport graph and applies Dijkstra's algorithm to find the cheapest or fastest itinerary.",
       "Finds the combination of flights to all target destinations with the lowest total price, or the shortest total travel time.",
@@ -28,6 +29,7 @@ export const PROJECTS = [
     year: "2026",
     description: "A game for car nerds - identify the car before the clock runs out.",
     link: "https://autoguessr.vercel.app/",
+    repoLink: "https://github.com/kagervig/AutoGuessr",
     tech: ["Next.js", "Typescript", "PostgreSQL", "Gemini AI Pipeline"],
     details: [
       "Next.js and Typescript frontend hosted on Vercel.",

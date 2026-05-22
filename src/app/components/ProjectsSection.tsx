@@ -21,6 +21,7 @@ export const ProjectsSection = ({ expandedItems, onToggle }: ProjectsSectionProp
           details={project.details}
           tags={project.tech}
           link={project.link}
+          repoLink={project.repoLink}
           isOpen={!!expandedItems[project.id]}
           onToggle={() => onToggle(project.id)}
         />
