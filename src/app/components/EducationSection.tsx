@@ -22,10 +22,10 @@ export const EducationSection = () => (
           <div className="flex-grow text-center md:text-left">
             <div className="flex flex-col md:flex-row justify-between items-center md:items-start mb-2">
               <h3 className="text-xl font-bold text-ink">{edu.school}</h3>
-              <span className="text-sm font-mono text-accent">{edu.year}</span>
+              <span className="text-sm font-mono text-muted-foreground">{edu.year}</span>
             </div>
-            <p className="text-lg text-muted mb-1">{edu.degree}</p>
-            {edu.grade && <p className="text-sm font-bold text-accent">{edu.grade}</p>}
+            <p className="text-lg text-muted-foreground mb-1">{edu.degree}</p>
+            {edu.grade && <p className="text-sm font-bold text-muted-foreground">{edu.grade}</p>}
           </div>
         </div>
       ))}

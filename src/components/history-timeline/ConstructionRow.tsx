@@ -1,6 +1,7 @@
 import React from 'react';
 import { Construction } from '@/lib/history-timeline/types';
 import { useSearch } from '@/lib/history-timeline/useSearch';
+import { useTimeline } from '@/lib/history-timeline/useTimeline';
 
 interface ConstructionRowProps {
   constructions: Construction[];
@@ -56,24 +57,72 @@ function placeItems(items: Construction[], getLeft: (c: Construction) => number)
   return result;
 }
 
-export const ConstructionRow: React.FC<ConstructionRowProps> = ({ constructions, yearToPixel }) => {
-  const { setSelectedItem } = useSearch();
-  const { zoom } = useTimeline();
-  const placed = placeItems(constructions, c => yearToPixel(c.year));
-
+function placeItems(items: Construction[], getLeft: (c: Construction) => number, zoom: number) {
   const showImp2 = zoom > 0.5;
   const showImp1 = zoom > 2.0;
 
+  const candidates = items.map(item => {
+    const importance = item.importance ?? 2;
+    const wantsLabel = importance >= 3 || (importance === 2 && showImp2) || (importance === 1 && showImp1);
+    return { item, left: getLeft(item), wantsLabel, importance };
+  });
+
+  const prioritySorted = [...candidates].sort((a, b) => {
+    if (b.importance !== a.importance) return b.importance - a.importance;
+    return a.left - b.left;
+  });
+
+  const occupied: Array<Array<{ l: number; r: number }>> = LANES.map(() => []);
+  const results = new Map<string, { laneIdx: number; isLabelVisible: boolean }>();
+
+  for (const { item, left, wantsLabel } of prioritySorted) {
+    let chosenLane = -1;
+    let finalVisibility = false;
+
+    if (wantsLabel) {
+      const lEdge = left - LABEL_W / 2 - H_PAD;
+      const rEdge = left + LABEL_W / 2 + H_PAD;
+
+      for (let i = 0; i < LANES.length; i++) {
+        if (!occupied[i].some(rect => lEdge < r.r && rEdge > rect.l)) {
+          chosenLane = i;
+          finalVisibility = true;
+          occupied[i].push({ l: lEdge, r: rEdge });
+          break;
+        }
+      }
+    }
+
+    if (chosenLane === -1) {
+      chosenLane = Math.floor((left % 1000) / (1000 / LANES.length));
+      finalVisibility = false;
+    }
+
+    results.set(item.id, { laneIdx: chosenLane, isLabelVisible: finalVisibility });
+  }
+
+  return results;
+}
+
+export const ConstructionRow: React.FC<ConstructionRowProps> = ({ constructions, yearToPixel }) => {
+  const { setSelectedItem } = useSearch();
+  const { zoom } = useTimeline();
+
+  const placementMap = React.useMemo(() => 
+    placeItems(constructions, c => yearToPixel(c.year), zoom),
+    [constructions, zoom, yearToPixel]
+  );
+
   return (
     <div className="relative w-full h-full">
-      {placed.map(({ item: construction, left, laneIdx }) => {
+      {constructions.map((construction) => {
+        const placement = placementMap.get(construction.id);
+        if (!placement) return null;
+
+        const { laneIdx, isLabelVisible } = placement;
         const { topPct, labelAbove } = LANES[laneIdx];
         const importance = construction.importance ?? 2;
-
-        const isLabelVisible = 
-          importance >= 3 || 
-          (importance === 2 && showImp2) || 
-          (importance === 1 && showImp1);
+        const left = yearToPixel(construction.year);
 
         return (
           <div
@@ -84,12 +133,10 @@ export const ConstructionRow: React.FC<ConstructionRowProps> = ({ constructions,
             title={`${construction.name} · ${formatYear(construction.year)}`}
           >
             <div
-              className={`rounded-full border-2 border-white/80 mx-auto hover:scale-125 transition-all relative z-10 ${
-                importance === 1 ? 'w-2.5 h-2.5' : 'w-3.5 h-3.5'
-              }`}
+              className="w-3.5 h-3.5 rounded-full border-2 border-white/80 mx-auto hover:scale-125 transition-all relative z-10"
               style={{ 
                 backgroundColor: AMBER,
-                opacity: isLabelVisible ? 1 : 0.6
+                opacity: isLabelVisible ? 1 : 0.4
               }}
             />
             

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Event } from '@/lib/history-timeline/types';
 import { useSearch } from '@/lib/history-timeline/useSearch';
+import { useTimeline } from '@/lib/history-timeline/useTimeline';
 
 interface EventRowProps {
   events: Event[];
@@ -72,28 +73,79 @@ function placeItems(items: Event[], getLeft: (e: Event) => number) {
   return result;
 }
 
-export const EventRow: React.FC<EventRowProps> = ({ events, yearToPixel }) => {
-  const { setSelectedItem } = useSearch();
-  const { zoom } = useTimeline();
-  const placed = placeItems(events, e => yearToPixel(e.year));
-
-  // Semantic zoom thresholds
-  // Zoom is typically 0.1 to 20+. 
-  // Let's use 0.5 and 2.0 as initial thresholds.
+function placeItems(items: Event[], getLeft: (e: Event) => number, zoom: number) {
   const showImp2 = zoom > 0.5;
   const showImp1 = zoom > 2.0;
 
+  // 1. First, identify which items WANT to show a label
+  const candidates = items.map(item => {
+    const importance = item.importance ?? 2;
+    const wantsLabel = importance >= 3 || (importance === 2 && showImp2) || (importance === 1 && showImp1);
+    return { item, left: getLeft(item), wantsLabel, importance };
+  });
+
+  // 2. Sort candidates by importance (highest first) so high-priority labels "claim" space first
+  // Then by position so we are consistent
+  const prioritySorted = [...candidates].sort((a, b) => {
+    if (b.importance !== a.importance) return b.importance - a.importance;
+    return a.left - b.left;
+  });
+
+  const occupied: Array<Array<{ l: number; r: number }>> = LANES.map(() => []);
+  const results = new Map<string, { laneIdx: number; isLabelVisible: boolean }>();
+
+  for (const { item, left, wantsLabel } of prioritySorted) {
+    let chosenLane = -1;
+    let finalVisibility = false;
+
+    if (wantsLabel) {
+      const lEdge = left - LABEL_W / 2 - H_PAD;
+      const rEdge = left + LABEL_W / 2 + H_PAD;
+
+      // Try to find a lane where this label fits
+      for (let i = 0; i < LANES.length; i++) {
+        if (!occupied[i].some(rect => lEdge < r.r && rEdge > rect.l)) {
+          chosenLane = i;
+          finalVisibility = true;
+          occupied[i].push({ l: lEdge, r: rEdge });
+          break;
+        }
+      }
+    }
+
+    // If we couldn't place the label (or didn't want to), just assign a default lane for the dot
+    if (chosenLane === -1) {
+      chosenLane = Math.floor((left % 1000) / (1000 / LANES.length)); // pseudo-random stable lane
+      finalVisibility = false;
+    }
+
+    results.set(item.id, { laneIdx: chosenLane, isLabelVisible: finalVisibility });
+  }
+
+  return results;
+}
+
+export const EventRow: React.FC<EventRowProps> = ({ events, yearToPixel }) => {
+  const { setSelectedItem } = useSearch();
+  const { zoom } = useTimeline();
+  
+  // Memoize placement for performance and stability
+  const placementMap = React.useMemo(() => 
+    placeItems(events, e => yearToPixel(e.year), zoom),
+    [events, zoom, yearToPixel]
+  );
+
   return (
     <div className="relative w-full h-full">
-      {placed.map(({ item: event, left, laneIdx }) => {
+      {events.map((event) => {
+        const placement = placementMap.get(event.id);
+        if (!placement) return null;
+
+        const { laneIdx, isLabelVisible } = placement;
         const { topPct, labelAbove } = LANES[laneIdx];
         const color = getCategoryColor(event.category);
         const importance = event.importance ?? 2;
-
-        const isLabelVisible = 
-          importance >= 3 || 
-          (importance === 2 && showImp2) || 
-          (importance === 1 && showImp1);
+        const left = yearToPixel(event.year);
 
         return (
           <div
@@ -104,12 +156,10 @@ export const EventRow: React.FC<EventRowProps> = ({ events, yearToPixel }) => {
             title={`${event.name} · ${formatYear(event.year)}`}
           >
             <div
-              className={`rounded-full border-2 border-white/80 mx-auto hover:scale-125 transition-all relative z-10 ${
-                importance === 1 ? 'w-2.5 h-2.5' : 'w-3.5 h-3.5'
-              }`}
+              className="w-3.5 h-3.5 rounded-full border-2 border-white/80 mx-auto hover:scale-125 transition-all relative z-10"
               style={{ 
                 backgroundColor: color,
-                opacity: isLabelVisible ? 1 : 0.6
+                opacity: isLabelVisible ? 1 : 0.4
               }}
             />
             
