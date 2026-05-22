@@ -132,7 +132,7 @@ export const TravelMap = ({ visitedCountryCodes }: TravelMapProps) => {
             {visitedCountryCodes.length} countries visited
           </span>
         </div>
-        <span className="text-sm text-muted">
+        <span className="text-sm font-medium text-ink">
           ({Math.round((visitedCountryCodes.length / 195) * 100)}% of the world)
         </span>
       </div>

@@ -43,17 +43,17 @@ export const ExpandableCard = ({
           <div className="flex items-center justify-center md:justify-start gap-2">
             <h3 className="text-xl font-bold text-ink">{title}</h3>
             {period && (
-              <span className="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-muted">
+              <span className="text-xs font-medium px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-muted-foreground">
                 {period}
               </span>
             )}
           </div>
-          <p className="text-accent font-medium">{subtitle}</p>
-          <p className="text-muted text-sm mt-2">{description}</p>
+          <p className="text-muted-foreground font-medium">{subtitle}</p>
+          <p className="text-muted-foreground text-sm mt-2">{description}</p>
         </div>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          className="text-muted group-hover:text-accent transition-colors self-center md:self-auto mx-auto md:mx-0"
+          className="text-muted-foreground group-hover:text-primary transition-colors self-center md:self-auto mx-auto md:mx-0"
         >
           <ChevronDown size={20} />
         </motion.div>
@@ -86,9 +86,9 @@ export const ExpandableCard = ({
                   initial={{ x: -10, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex gap-3 text-muted leading-relaxed"
+                  className="flex gap-3 text-muted-foreground leading-relaxed"
                 >
-                  <span className="text-accent mt-1.5">•</span>
+                  <span className="text-muted-foreground mt-1.5">•</span>
                   <span>{detail}</span>
                 </motion.li>
               ))}
@@ -99,7 +99,7 @@ export const ExpandableCard = ({
                   href={link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                   onClick={e => e.stopPropagation()}
                 >
                   View project <ExternalLink size={14} />
